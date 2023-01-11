@@ -21,16 +21,16 @@ public class DriveTrain extends SubsystemBase {
     static MotorControllerGroup Right = new MotorControllerGroup(RightFront, RightBack);
   
     // The robot's drive
-    private static final DifferentialDrive m_drive = new DifferentialDrive(Left, Right);
+    private static final DifferentialDrive m_drive = new DifferentialDrive(LeftFront, RightFront);
 
     /**
     * Creates a new DriveSubsystem.
     */
     public DriveTrain() {
         // Sets the distance per pulse for the encoders
-   
-    }
     
+    }
+
     public void DifferentialDrive() {
         //m_drive.(false);
         m_drive.arcadeDrive((RobotContainer.m_driverController.getRawAxis(0)*.8), -(RobotContainer.m_driverController.getRawAxis(1)*.8));
