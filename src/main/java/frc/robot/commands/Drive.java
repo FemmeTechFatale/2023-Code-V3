@@ -15,7 +15,7 @@ public class Drive extends CommandBase {
 
   public Drive(DriveTrain subsystem) {
     m_drive = subsystem;
-    addRequirements(m_drive);
+    addRequirements(subsystem);
   }
 
   public void initialize() {

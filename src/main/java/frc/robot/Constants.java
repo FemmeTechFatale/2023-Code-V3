@@ -14,10 +14,10 @@ package frc.robot;
  */
 public final class Constants {
   public static final class CANPort {
-    public static final int kLeftMotorFrontPort = 1;
-    public static final int kLeftMotorBackPort = 3;
-    public static final int kRightMotorFrontPort = 2;
-    public static final int kRightMotorBackPort = 4;
+    public static final int kLeftMotorFrontPort = 2;
+    //public static final int kLeftMotorBackPort = 3;
+    public static final int kRightMotorFrontPort = 3;
+    //public static final int kRightMotorBackPort = 4;
   }
 
   public static class OperatorConstants {

@@ -26,7 +26,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final DriveTrain m_DriveTrain = new DriveTrain();
+  private final DriveTrain m_robotTrain = new DriveTrain();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   public final static CommandXboxController m_driverController =
@@ -38,7 +38,11 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
-    m_DriveTrain.setDefaultCommand(new Drive(m_DriveTrain));
+
+    m_robotTrain.setDefaultCommand(new Drive(m_robotTrain));
+    
+    
+    
   }
 
   /**
