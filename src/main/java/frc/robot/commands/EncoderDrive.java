@@ -6,10 +6,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
 public class EncoderDrive extends CommandBase {
-    public RelativeEncoder m_rightEncoder;
+    public static RelativeEncoder m_rightEncoder;
     double m_target;
     double m_speed;
-    public static double m_speed_display;
     /** Creates a new EncoderDrive. */
   
     /**Drives to a target number of rotations. Use speed to change direction not target
@@ -20,7 +19,6 @@ public class EncoderDrive extends CommandBase {
       // Use addRequirements() here to declare subsystem dependencies.
       m_target = target;
       m_speed = speed;
-      m_speed_display = speed;
 
     }
   
