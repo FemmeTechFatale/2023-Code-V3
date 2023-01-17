@@ -25,7 +25,7 @@ public void initialize() {}
 //this is a line of code wohoahoaooh
 @Override
 public void execute() {
-    ArmRotateSub.runIt(m_motorPower);
+    m_subsystem.runIt(m_motorPower);
 }
 
 // Called once the command ends or is interrupted.
@@ -35,7 +35,7 @@ public void end(boolean interrupted) {}
 // Returns true when the command should end.
 @Override
 public boolean isFinished() {
-  return true;
+  return false;
 }
 
 

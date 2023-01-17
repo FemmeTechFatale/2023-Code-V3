@@ -37,7 +37,7 @@ public class ArmRotateSub extends SubsystemBase {
     
   }
 
-public static void runIt(double motorPower) {
+public void runIt(double motorPower) {
     talonArmRotate.set(motorPower);
 }
 

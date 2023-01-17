@@ -47,9 +47,15 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
+    m_ArmPrimarySub.setDefaultCommand(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(1)));
+    m_ArmSecondarySub.setDefaultCommand(new ArmSecondary(m_ArmSecondarySub,m_driverController.getRawAxis(5)));
+    m_ArmRotateSub.setDefaultCommand(new ArmRotate(m_ArmRotateSub,m_driverController.getRawAxis(4)));
+
+    /*
     m_ArmPrimarySub.setDefaultCommand(new ArmPrimary(m_ArmPrimarySub,m_ArmOneJoy.getRawAxis(1)));
     m_ArmSecondarySub.setDefaultCommand(new ArmSecondary(m_ArmSecondarySub,m_ArmTwoJoy.getRawAxis(1)));
     m_ArmRotateSub.setDefaultCommand(new ArmRotate(m_ArmRotateSub,m_ArmTwoJoy.getRawAxis(2)));
+    */
   }
 
   /**

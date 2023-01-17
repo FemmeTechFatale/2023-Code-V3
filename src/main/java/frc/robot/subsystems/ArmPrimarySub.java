@@ -5,12 +5,14 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ArmPrimarySub extends SubsystemBase {
     public static Talon talonArmPrime = new Talon(1);
     
+  
 
     /** Creates a new ExampleSubsystem. */
   public ArmPrimarySub() {
@@ -21,15 +23,16 @@ public class ArmPrimarySub extends SubsystemBase {
    * Example command factory method.
    *
    * @return a command
-   */
+   
   public CommandBase exampleMethodCommand() {
     // Inline construction of command goes here.
     // Subsystem::RunOnce implicitly requires `this` subsystem.
     return runOnce(
         () -> {
-          /* one-time action goes here */
+          // one-time action goes here //
         });
   }
+  */
 
   @Override
   public void periodic() {
@@ -37,8 +40,9 @@ public class ArmPrimarySub extends SubsystemBase {
     
   }
 
-public static void runIt(double motorPower) {
-    talonArmPrime.set(motorPower);
+public void runIt(double motorPower) {
+  SmartDashboard.putString("DB/String 0", "Primary before motor set");
+  talonArmPrime.set(motorPower);
 }
 
   @Override

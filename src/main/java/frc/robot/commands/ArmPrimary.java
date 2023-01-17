@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.ArmPrimarySub;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
@@ -14,7 +13,7 @@ public class ArmPrimary extends CommandBase {
     m_subsystem = subsystem;
     m_motorPower = motorPower;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_subsystem);
+    addRequirements(subsystem);
   }
 // Called when the command is initially scheduled.
 @Override
@@ -25,7 +24,7 @@ public void initialize() {}
 //this is a line of code wohoahoaooh
 @Override
 public void execute() {
-    ArmPrimarySub.runIt(m_motorPower);
+    m_subsystem.runIt(m_motorPower);
 }
 
 // Called once the command ends or is interrupted.
@@ -35,7 +34,7 @@ public void end(boolean interrupted) {}
 // Returns true when the command should end.
 @Override
 public boolean isFinished() {
-  return true;
+  return false;
 }
 
 
