@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ArmSecondarySub extends SubsystemBase {
-    public static Talon talonArmSecond = new Talon(2);
+public class ArmRotateSub extends SubsystemBase {
+    public static Talon talonArmRotate = new Talon(0);
     
 
     /** Creates a new ExampleSubsystem. */
-  public ArmSecondarySub() {
+  public ArmRotateSub() {
 
   }
 
@@ -38,7 +38,7 @@ public class ArmSecondarySub extends SubsystemBase {
   }
 
 public static void runIt(double motorPower) {
-    talonArmSecond.set(motorPower);
+    talonArmRotate.set(motorPower);
 }
 
   @Override

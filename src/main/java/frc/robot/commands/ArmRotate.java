@@ -1,16 +1,16 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.ArmPrimarySub;
+import frc.robot.subsystems.ArmRotateSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ArmPrimary extends CommandBase {
+public class ArmRotate extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ArmPrimarySub m_subsystem;
+  private final ArmRotateSub m_subsystem;
   private final double m_motorPower;
 
-  public ArmPrimary(ArmPrimarySub subsystem, double motorPower) {
+  public ArmRotate(ArmRotateSub subsystem, double motorPower) {
     m_subsystem = subsystem;
     m_motorPower = motorPower;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -25,7 +25,7 @@ public void initialize() {}
 //this is a line of code wohoahoaooh
 @Override
 public void execute() {
-    ArmPrimarySub.runIt(m_motorPower);
+    ArmRotateSub.runIt(m_motorPower);
 }
 
 // Called once the command ends or is interrupted.

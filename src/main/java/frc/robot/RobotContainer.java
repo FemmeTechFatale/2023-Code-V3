@@ -7,9 +7,16 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.ArmPrimary;
+import frc.robot.commands.ArmRotate;
+import frc.robot.commands.ArmSecondary;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.ArmPrimarySub;
+import frc.robot.subsystems.ArmRotateSub;
+import frc.robot.subsystems.ArmSecondarySub;
 import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -24,14 +31,25 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
+  private final ArmPrimarySub m_ArmPrimarySub = new ArmPrimarySub();
+  private final ArmSecondarySub m_ArmSecondarySub = new ArmSecondarySub();
+  private final ArmRotateSub m_ArmRotateSub = new ArmRotateSub();
+
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   public final static CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  public final static Joystick m_ArmOneJoy = new Joystick(1);
+  public final static Joystick m_ArmTwoJoy = new Joystick(2);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+
+    m_ArmPrimarySub.setDefaultCommand(new ArmPrimary(m_ArmPrimarySub,m_ArmOneJoy.getRawAxis(1)));
+    m_ArmSecondarySub.setDefaultCommand(new ArmSecondary(m_ArmSecondarySub,m_ArmTwoJoy.getRawAxis(1)));
+    m_ArmRotateSub.setDefaultCommand(new ArmRotate(m_ArmRotateSub,m_ArmTwoJoy.getRawAxis(2)));
   }
 
   /**
@@ -51,6 +69,10 @@ public class RobotContainer {
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
+    //m_driverController.a().whileTrue(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(2)));
+
+    //m_driverController.x().whileTrue(new ArmSecondary(m_ArmSecondarySub,m_driverController.getRawAxis(3)));
   }
 
   /**

@@ -31,7 +31,9 @@ public class ExampleCommand extends CommandBase {
   //Testing here! woO!!
   //this is a line of code wohoahoaooh
   @Override
-  public void execute() {}
+  public void execute() {
+    
+  }
 
   // Called once the command ends or is interrupted.
   @Override
