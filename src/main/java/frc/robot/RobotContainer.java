@@ -15,8 +15,11 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ArmPrimarySub;
 import frc.robot.subsystems.ArmRotateSub;
 import frc.robot.subsystems.ArmSecondarySub;
+import frc.robot.commands.Drive;
+import frc.robot.commands.EncoderDrive;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -36,11 +39,18 @@ public class RobotContainer {
   private final ArmRotateSub m_ArmRotateSub = new ArmRotateSub();
 
 
+  private final DriveTrain m_robotTrain = new DriveTrain();
+  public static final EncoderDrive encoderDrive = new EncoderDrive(0, 0);
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   public final static CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
   public final static Joystick m_ArmOneJoy = new Joystick(1);
-  public final static Joystick m_ArmTwoJoy = new Joystick(2);
+  public final static Joystick m_ArmTwoJoy = new Joystick(2); 
+
+  
+
+  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -56,6 +66,11 @@ public class RobotContainer {
     m_ArmSecondarySub.setDefaultCommand(new ArmSecondary(m_ArmSecondarySub,m_ArmTwoJoy.getRawAxis(1)));
     m_ArmRotateSub.setDefaultCommand(new ArmRotate(m_ArmRotateSub,m_ArmTwoJoy.getRawAxis(2)));
     */
+
+    m_robotTrain.setDefaultCommand(new Drive(m_robotTrain));
+    
+    
+    
   }
 
   /**
@@ -79,6 +94,7 @@ public class RobotContainer {
     //m_driverController.a().whileTrue(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(2)));
 
     //m_driverController.x().whileTrue(new ArmSecondary(m_ArmSecondarySub,m_driverController.getRawAxis(3)));
+
   }
 
   /**
