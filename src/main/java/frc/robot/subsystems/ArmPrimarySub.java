@@ -6,11 +6,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.PWMPort;
 
 public class ArmPrimarySub extends SubsystemBase {
-    public static Talon talonArmPrime = new Talon(1);
+    public static Talon talonArmPrime = new Talon(PWMPort.kArmPrimary);
     
   
 
@@ -41,7 +41,7 @@ public class ArmPrimarySub extends SubsystemBase {
   }
 
 public void runIt(double motorPower) {
-  SmartDashboard.putString("DB/String 0", "Primary before motor set");
+  //SmartDashboard.putString("DB/String 0", "Primary before motor set");
   talonArmPrime.set(motorPower);
 }
 

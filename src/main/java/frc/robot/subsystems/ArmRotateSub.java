@@ -7,9 +7,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.PWMPort;
 
 public class ArmRotateSub extends SubsystemBase {
-    public static Talon talonArmRotate = new Talon(0);
+    public static Talon talonArmRotate = new Talon(PWMPort.kArmRotate);
     
 
     /** Creates a new ExampleSubsystem. */

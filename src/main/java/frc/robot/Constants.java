@@ -22,6 +22,14 @@ public final class Constants {
 
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kOperatorJoystickLeft = 1;
+    public static final int kOperatorJoystickRight = 2;
+  }
+
+  public static final class PWMPort {
+    public static final int kArmRotate = 0;
+    public static final int kArmPrimary = 1;
+    public static final int kArmSecondary = 2;
   }
 }
 

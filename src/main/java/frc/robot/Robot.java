@@ -81,19 +81,19 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    SmartDashboard.putString("DB/String 1", "Test 1");
-    SmartDashboard.putString("DB/String 0", Double.toString(RobotContainer.m_ArmTwoJoy.getRawAxis(1)));
+    //SmartDashboard.putString("DB/String 1", "Test 1");
+    //SmartDashboard.putString("DB/String 2", Double.toString(RobotContainer.m_ArmTwoJoy.getRawAxis(1)));
 
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    SmartDashboard.putString("DB/String 0", Double.toString(RobotContainer.m_driverController.getRawAxis(0)));
+    //SmartDashboard.putString("DB/String 5", Double.toString(RobotContainer.m_driverController.getRawAxis(0)));
     
     //displays # of rotations (negative # = backwards; positive # = forward) and velocity in RPM
-    SmartDashboard.putString("DB/String 1", Double.toString(DriveTrain.RightFront.getEncoder().getPosition()));
-    SmartDashboard.putString("DB/String 2", Double.toString(DriveTrain.RightFront.getEncoder().getVelocity()));
+    //SmartDashboard.putString("DB/String 1", Double.toString(DriveTrain.RightFront.getEncoder().getPosition()));
+    //SmartDashboard.putString("DB/String 2", Double.toString(DriveTrain.RightFront.getEncoder().getVelocity()));
   
     //SmartDashboard.putString("DB/String 0", "Test 1");
   }

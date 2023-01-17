@@ -14,7 +14,7 @@ public class ArmRotate extends CommandBase {
     m_subsystem = subsystem;
     m_motorPower = motorPower;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_subsystem);
+    addRequirements(subsystem);
   }
 // Called when the command is initially scheduled.
 @Override

@@ -33,20 +33,18 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
   private final ArmPrimarySub m_ArmPrimarySub = new ArmPrimarySub();
   private final ArmSecondarySub m_ArmSecondarySub = new ArmSecondarySub();
   private final ArmRotateSub m_ArmRotateSub = new ArmRotateSub();
-
-
   private final DriveTrain m_robotTrain = new DriveTrain();
-  public static final EncoderDrive encoderDrive = new EncoderDrive(0, 0);
+
+  //public static final EncoderDrive encoderDrive = new EncoderDrive(0, 0);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   public final static CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  public final static Joystick m_ArmOneJoy = new Joystick(1);
-  public final static Joystick m_ArmTwoJoy = new Joystick(2); 
+  public final static Joystick m_ArmOneJoy = new Joystick(OperatorConstants.kOperatorJoystickLeft);
+  public final static Joystick m_ArmTwoJoy = new Joystick(OperatorConstants.kOperatorJoystickRight); 
 
   
 
@@ -57,15 +55,15 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
-    m_ArmPrimarySub.setDefaultCommand(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(1)));
+    //m_ArmPrimarySub.setDefaultCommand(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(1)));
     m_ArmSecondarySub.setDefaultCommand(new ArmSecondary(m_ArmSecondarySub,m_driverController.getRawAxis(5)));
     m_ArmRotateSub.setDefaultCommand(new ArmRotate(m_ArmRotateSub,m_driverController.getRawAxis(4)));
 
-    /*
+    
     m_ArmPrimarySub.setDefaultCommand(new ArmPrimary(m_ArmPrimarySub,m_ArmOneJoy.getRawAxis(1)));
-    m_ArmSecondarySub.setDefaultCommand(new ArmSecondary(m_ArmSecondarySub,m_ArmTwoJoy.getRawAxis(1)));
-    m_ArmRotateSub.setDefaultCommand(new ArmRotate(m_ArmRotateSub,m_ArmTwoJoy.getRawAxis(2)));
-    */
+    //m_ArmSecondarySub.setDefaultCommand(new ArmSecondary(m_ArmSecondarySub,m_ArmTwoJoy.getRawAxis(1)));
+    //m_ArmRotateSub.setDefaultCommand(new ArmRotate(m_ArmRotateSub,m_ArmTwoJoy.getRawAxis(2)));
+    
 
     m_robotTrain.setDefaultCommand(new Drive(m_robotTrain));
     
