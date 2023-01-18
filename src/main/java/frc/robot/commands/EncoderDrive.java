@@ -3,7 +3,7 @@ package frc.robot.commands;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveSub;
 
 public class EncoderDrive extends CommandBase {
     public static RelativeEncoder m_rightEncoder;
@@ -25,42 +25,42 @@ public class EncoderDrive extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-      m_rightEncoder = DriveTrain.RightFront.getEncoder();
+      m_rightEncoder = DriveSub.RightFront.getEncoder();
       m_rightEncoder.setPosition(0);
-      DriveTrain.LeftFront.setIdleMode(IdleMode.kBrake);
+      DriveSub.LeftFront.setIdleMode(IdleMode.kBrake);
       //DriveTrain.LeftBack.setIdleMode(IdleMode.kBrake);
-      DriveTrain.RightFront.setIdleMode(IdleMode.kBrake);
+      DriveSub.RightFront.setIdleMode(IdleMode.kBrake);
       //DriveTrain.RightBack.setIdleMode(IdleMode.kBrake);
-      DriveTrain.m_drive.feed();
+      DriveSub.m_drive.feed();
     }
   
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
       if(Math.abs(m_target) < Math.abs(m_rightEncoder.getPosition())){
-        DriveTrain.m_drive.arcadeDrive(0, 0);
+        DriveSub.m_drive.arcadeDrive(0, 0);
       }else{
-        DriveTrain.m_drive.arcadeDrive(m_speed, 0);
+        DriveSub.m_drive.arcadeDrive(m_speed, 0);
       }
-      DriveTrain.m_drive.feed();
+      DriveSub.m_drive.feed();
     }
   
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        DriveTrain.m_drive.arcadeDrive(0, 0); 
-        DriveTrain.m_drive.feed();
+        DriveSub.m_drive.arcadeDrive(0, 0); 
+        DriveSub.m_drive.feed();
     }
   
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
       if(Math.abs(m_target) < Math.abs(m_rightEncoder.getPosition())){
-        DriveTrain.m_drive.arcadeDrive(0, 0);
-        DriveTrain.m_drive.feed();
+        DriveSub.m_drive.arcadeDrive(0, 0);
+        DriveSub.m_drive.feed();
         return true;
       }else{
-        DriveTrain.m_drive.feed();
+        DriveSub.m_drive.feed();
         return false;
       }
     }

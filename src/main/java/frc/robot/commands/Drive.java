@@ -2,7 +2,7 @@ package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveSub;
 
 /**
  * A command to drive the robot with joystick input (passed in as {@link DoubleSupplier}s). Written
@@ -11,9 +11,9 @@ import frc.robot.subsystems.DriveTrain;
  */
 public class Drive extends CommandBase {
   
-  private final DriveTrain m_drive;
+  private final DriveSub m_drive;
 
-  public Drive(DriveTrain subsystem) {
+  public Drive(DriveSub subsystem) {
     m_drive = subsystem;
     addRequirements(subsystem);
   }

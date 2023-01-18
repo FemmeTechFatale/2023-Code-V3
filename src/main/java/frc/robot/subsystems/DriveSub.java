@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+//import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANPort;
 import frc.robot.RobotContainer;
@@ -9,7 +9,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class DriveTrain extends SubsystemBase {
+public class DriveSub extends SubsystemBase {
     
     public static CANSparkMax LeftFront = new CANSparkMax(CANPort.kLeftMotorFrontPort, MotorType.kBrushless);
     //public static CANSparkMax LeftBack = new CANSparkMax(CANPort.kLeftMotorBackPort, MotorType.kBrushless);
@@ -28,7 +28,7 @@ public class DriveTrain extends SubsystemBase {
     /**
     * Creates a new DriveSubsystem.
     */
-    public DriveTrain() {
+    public DriveSub() {
         // Sets the distance per pulse for the encoders
       
     }

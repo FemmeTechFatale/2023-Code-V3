@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.EncoderDrive;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.ArmSub;
+import frc.robot.subsystems.DriveSub;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -94,7 +95,7 @@ public class Robot extends TimedRobot {
     //displays # of rotations (negative # = backwards; positive # = forward) and velocity in RPM
     //SmartDashboard.putString("DB/String 1", Double.toString(DriveTrain.RightFront.getEncoder().getPosition()));
     //SmartDashboard.putString("DB/String 2", Double.toString(DriveTrain.RightFront.getEncoder().getVelocity()));
-  
+    //SmartDashboard.putString("DB/String 1", Double.toString(ArmPrimarySub.talonArmPrime.kArmPrimary.getEncoder().getPosition()));
     //SmartDashboard.putString("DB/String 0", "Test 1");
   }
 

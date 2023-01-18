@@ -7,19 +7,15 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.ArmPrimary;
-import frc.robot.commands.ArmRotate;
-import frc.robot.commands.ArmSecondary;
+import frc.robot.commands.Arm;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ArmPrimarySub;
-import frc.robot.subsystems.ArmRotateSub;
-import frc.robot.subsystems.ArmSecondarySub;
+import frc.robot.subsystems.ArmSub;
 import frc.robot.commands.Drive;
 import frc.robot.commands.EncoderDrive;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveSub;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -33,18 +29,16 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final ArmPrimarySub m_ArmPrimarySub = new ArmPrimarySub();
-  private final ArmSecondarySub m_ArmSecondarySub = new ArmSecondarySub();
-  private final ArmRotateSub m_ArmRotateSub = new ArmRotateSub();
-  private final DriveTrain m_robotTrain = new DriveTrain();
+  private final ArmSub m_ArmSub = new ArmSub();
+  private final DriveSub m_robotTrain = new DriveSub();
 
   //public static final EncoderDrive encoderDrive = new EncoderDrive(0, 0);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   public final static CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  public final static Joystick m_ArmOneJoy = new Joystick(OperatorConstants.kOperatorJoystickLeft);
-  public final static Joystick m_ArmTwoJoy = new Joystick(OperatorConstants.kOperatorJoystickRight); 
+  public final static Joystick m_ArmOneJoy = new Joystick(OperatorConstants.kArmJoyOnePort);
+  public final static Joystick m_ArmTwoJoy = new Joystick(OperatorConstants.kArmJoyTwoPort); 
 
   
 
@@ -55,16 +49,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
-    //m_ArmPrimarySub.setDefaultCommand(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(1)));
-    m_ArmSecondarySub.setDefaultCommand(new ArmSecondary(m_ArmSecondarySub,m_driverController.getRawAxis(5)));
-    m_ArmRotateSub.setDefaultCommand(new ArmRotate(m_ArmRotateSub,m_driverController.getRawAxis(4)));
-
-    
-    m_ArmPrimarySub.setDefaultCommand(new ArmPrimary(m_ArmPrimarySub,m_ArmOneJoy.getRawAxis(1)));
-    //m_ArmSecondarySub.setDefaultCommand(new ArmSecondary(m_ArmSecondarySub,m_ArmTwoJoy.getRawAxis(1)));
-    //m_ArmRotateSub.setDefaultCommand(new ArmRotate(m_ArmRotateSub,m_ArmTwoJoy.getRawAxis(2)));
-    
-
+    m_ArmSub.setDefaultCommand(new Arm(m_ArmSub));
     m_robotTrain.setDefaultCommand(new Drive(m_robotTrain));
     
     
@@ -103,5 +88,27 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     return Autos.exampleAuto(m_exampleSubsystem);
+  }
+
+  public static double sendAxisValue(int controllerID, int axisNumber) {
+    double axisOutput = 0;
+    switch(controllerID) {
+      case 0:
+        axisOutput = m_driverController.getRawAxis(axisNumber);
+      break;
+      case 1:
+        axisOutput = m_ArmOneJoy.getRawAxis(axisNumber);
+      break;
+      case 2:
+        axisOutput = m_ArmTwoJoy.getRawAxis(axisNumber);
+      break;
+
+    }
+     
+    if (Math.abs(axisOutput) < .2) {
+      axisOutput = 0;
+    }
+
+    return axisOutput;
   }
 }
