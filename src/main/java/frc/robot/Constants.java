@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -33,7 +36,7 @@ public final class Constants {
     public static final int BabyArmPort = 2;
   }
 
-  public static final class Limits {
+  public static final class StringPotLimits {
     public static final double LSArmMax = 100;
     public static final double LSArmMin = 0;
     
@@ -41,8 +44,36 @@ public final class Constants {
     public static final double LSDriveMin = 0;
 
   }
-  
 
+  static DigitalInput toplimitSwitch = new DigitalInput(0);
+  static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(0);
+  /*DigitalInput bottomlimitSwitch = new DigitalInput(1);
+  PWMVictorSPX motor = new PWMVictorSPX(0);
+  Joystick joystick = new Joystick(0);
+  */
 
+  public static boolean LimitSwitch(int limitID) {
+    boolean limitState = false;
+    
+    switch (limitID) {
+      case 0:
+        limitState = toplimitSwitch.get();
+        break;
+    }
+    
+    return limitState;
+  }
+
+  public static double StringPot(int PotID) {
+    double potValue = 0;
+
+    switch (PotID) {
+      case 0:
+        potValue=ArmBasePot.get();
+        break;
+    }
+    
+    return potValue;
+  }
 
 }
