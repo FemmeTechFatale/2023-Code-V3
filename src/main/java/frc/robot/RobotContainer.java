@@ -14,9 +14,10 @@ import frc.robot.subsystems.ArmSub;
 import frc.robot.commands.Drive;
 import frc.robot.commands.EncoderDrive;
 import frc.robot.subsystems.ExampleSubsystem;
-import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.subsystems.DriveSub;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -35,10 +36,16 @@ public class RobotContainer {
   //public static final EncoderDrive encoderDrive = new EncoderDrive(0, 0);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  public final static CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  public final static Joystick m_ArmOneJoy = new Joystick(OperatorConstants.kArmJoyOnePort);
-  public final static Joystick m_ArmTwoJoy = new Joystick(OperatorConstants.kArmJoyTwoPort); 
+  //public final static CommandXboxController m_driverController =
+  //   new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  public final static CommandJoystick m_driverController =
+     new CommandJoystick(OperatorConstants.kDriverControllerPort);
+  public final static CommandJoystick m_ArmOneJoy = new CommandJoystick(OperatorConstants.kArmJoyOnePort);
+  public final static CommandJoystick m_ArmTwoJoy = new CommandJoystick(OperatorConstants.kArmJoyTwoPort);
+  //public final static CommandXboxController m_ArmOneJoy = 
+      //new CommandXboxController(OperatorConstants.kArmJoyOnePort);
+  //public final static CommandXboxController m_ArmTwoJoy = 
+      //new CommandXboxController(OperatorConstants.kArmJoyTwoPort); 
 
   
 
@@ -72,7 +79,7 @@ public class RobotContainer {
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
     //m_driverController.a().whileTrue(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(2)));
 

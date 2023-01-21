@@ -13,6 +13,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
   public static final class CANPort {
     public static final int kLeftMotorFrontPort = 2;
     //public static final int kLeftMotorBackPort = 3;
@@ -31,7 +32,13 @@ public final class Constants {
     public static final int MamaArmPort = 1;
     public static final int BabyArmPort = 2;
   }
-}
 
-//test from Mathisen computer
-//Hi!
+  public static final class Limits {
+    public static final double LSArmMax = 100;
+    public static final double LSArmMin = 0;
+    
+    public static final double LSDriveMax = 100;
+    public static final double LSDriveMin = 0;
+
+  }
+}

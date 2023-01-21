@@ -3,6 +3,7 @@ package frc.robot.commands;
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSub;
+import frc.robot.Constants;
 
 /**
  * A command to drive the robot with joystick input (passed in as {@link DoubleSupplier}s). Written
@@ -24,6 +25,13 @@ public class Drive extends CommandBase {
   @Override
   public void execute() {
     m_drive.DifferentialDrive();
+    //test limit code
+    if (Math.abs(Constants.Limits.LSDriveMax) < Math.abs(DriveSub.RightFront.getEncoder().getPosition())){
+      DriveSub.m_drive.arcadeDrive(0, 0);
+    }
+    else {
+    }
+    DriveSub.m_drive.feed();
   } 
 
   @Override
