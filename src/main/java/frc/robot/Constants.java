@@ -37,20 +37,17 @@ public final class Constants {
   }
 
   public static final class StringPotLimits {
-    public static final double LSArmMax = 100;
-    public static final double LSArmMin = 0;
+    public static final double LSArmMax = 99;
+    public static final double LSArmMin = 1;
     
-    public static final double LSDriveMax = 100;
-    public static final double LSDriveMin = 0;
+    public static final double LSDriveMax = 99;
+    public static final double LSDriveMin = 1;
 
   }
 
   static DigitalInput toplimitSwitch = new DigitalInput(0);
   static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(0);
-  /*DigitalInput bottomlimitSwitch = new DigitalInput(1);
-  PWMVictorSPX motor = new PWMVictorSPX(0);
-  Joystick joystick = new Joystick(0);
-  */
+  //DigitalInput bottomlimitSwitch = new DigitalInput(1);
 
   public static boolean LimitSwitch(int limitID) {
     boolean limitState = false;

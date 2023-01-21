@@ -13,27 +13,47 @@ public class ArmSub extends SubsystemBase {
 
     public void runMotor() {
         
-        //code should stop motors if the limit is hit
-        if (Constants.StringPot(Constants.PWMPort.PapaArmPort) < 100) {
+        //if potentiometer value is in range (min-max), then run normally
+        if (Constants.StringPot(Constants.PWMPort.PapaArmPort) <= Constants.StringPotLimits.LSArmMax && 
+            Constants.StringPot(Constants.PWMPort.PapaArmPort) >= Constants.StringPotLimits.LSArmMin) {
             PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
         }
+        //else (if potentiometer is not in the range)...
         else {
+            //if the potentiometer exceeds the maximum
+            if (Constants.StringPot(Constants.PWMPort.PapaArmPort) > Constants.StringPotLimits.LSArmMax) {
+                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1) > 0) {
+                    PapaArm.set(0);
+                }
+                else {
+                    //set to any value idk
+                }
+
+            }
+            else {
+                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1) < 0) {
+                    PapaArm.set(0);
+                }
+                else {}
+            }
+            //if pot exceeds 100/max, set input to 0
+
+            //if pot exceeds 0/min 
             PapaArm.set(0);
-            Constants.StringPot(20); //wtf does this even do
+            //Constants.StringPot(20); //wtf does this even do
         }
         
         if (Constants.StringPot(Constants.PWMPort.MamaArmPort) < 100) {
             MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
         }
         else {
-            MamaArm.set(0);
+            MamaArm.set(-1);
         }
 
         if (Constants.StringPot(Constants.PWMPort.BabyArmPort) < 100) {
             BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
         }
         else {
-            if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1) >
             BabyArm.set(0);
         }
 

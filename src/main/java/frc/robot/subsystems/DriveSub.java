@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 //import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANPort;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -36,6 +37,16 @@ public class DriveSub extends SubsystemBase {
     public void DifferentialDrive() {
         //m_drive.(false);
         m_drive.arcadeDrive((RobotContainer.m_driverController.getRawAxis(0)*.8), -(RobotContainer.m_driverController.getRawAxis(1)*.8));
+      
+      if (Constants.StringPot(Constants.OperatorConstants.kDriverControllerPort) < 100) {
+        LeftFront.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,1));
+        RightFront.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,1));
+      }
+      else {
+        LeftFront.set(0);
+        RightFront.set(0);
+      }
+
       }
     
       /* public static double getPower() {

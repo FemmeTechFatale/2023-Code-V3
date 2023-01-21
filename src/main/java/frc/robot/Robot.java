@@ -94,7 +94,7 @@ public class Robot extends TimedRobot {
     
     //displays # of rotations (negative # = backwards; positive # = forward) and velocity in RPM
     //SmartDashboard.putString("DB/String 1", Double.toString(DriveTrain.RightFront.getEncoder().getPosition()));
-    //SmartDashboard.putString("DB/String 2", Double.toString(DriveTrain.RightFront.getEncoder().getVelocity()));
+    SmartDashboard.putString("DB/String 2", Double.toString(Constants.ArmBasePot.get()));
     //SmartDashboard.putString("DB/String 1", Double.toString(ArmPrimarySub.talonArmPrime.kArmPrimary.getEncoder().getPosition()));
     //SmartDashboard.putString("DB/String 0", "Test 1");
   }
