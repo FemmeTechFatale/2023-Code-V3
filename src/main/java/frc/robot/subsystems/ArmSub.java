@@ -13,9 +13,29 @@ public class ArmSub extends SubsystemBase {
 
     public void runMotor() {
         
-        PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
-        MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
-        BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
+        //code should stop motors if the limit is hit
+        if (Constants.StringPot(Constants.PWMPort.PapaArmPort) < 100) {
+            PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
+        }
+        else {
+            PapaArm.set(0);
+            Constants.StringPot(20); //wtf does this even do
+        }
+        
+        if (Constants.StringPot(Constants.PWMPort.MamaArmPort) < 100) {
+            MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
+        }
+        else {
+            MamaArm.set(0);
+        }
+
+        if (Constants.StringPot(Constants.PWMPort.BabyArmPort) < 100) {
+            BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
+        }
+        else {
+            if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1) >
+            BabyArm.set(0);
+        }
 
     }
 
