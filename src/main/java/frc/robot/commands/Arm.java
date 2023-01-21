@@ -22,7 +22,7 @@ public class Arm extends CommandBase {
   public void execute() {
     localArmSub.runMotor();
 
-    if (Math.abs(Constants.Limits.LSArmMax) < Math.abs(ArmSub.PapaArm.get())); {
+    /*if (Math.abs(Constants.Limits.LSArmMax) < Math.abs(ArmSub.PapaArm.get())); {
         //for now dawg
         ArmSub.PapaArm.stopMotor();
     }
@@ -31,7 +31,7 @@ public class Arm extends CommandBase {
         //for now dawg
         ArmSub.PapaArm.stopMotor();
     }
-
+    */
   }
 
   // Called once the command ends or is interrupted.

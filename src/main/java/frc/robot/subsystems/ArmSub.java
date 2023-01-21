@@ -7,8 +7,8 @@ import frc.robot.RobotContainer;
 
 public class ArmSub extends SubsystemBase {
     //Papa = Arm 1, Mama = 2, Baby = 3//
-    public final static Talon PapaArm = new Talon(Constants.PWMPort.PapaArmPort);
-    public final static Talon MamaArm = new Talon(Constants.PWMPort.MamaArmPort);
+    private final static Talon PapaArm = new Talon(Constants.PWMPort.PapaArmPort);
+    private final static Talon MamaArm = new Talon(Constants.PWMPort.MamaArmPort);
     private final static Talon BabyArm = new Talon(Constants.PWMPort.BabyArmPort);
 
     public void runMotor() {
@@ -16,7 +16,6 @@ public class ArmSub extends SubsystemBase {
         PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
         MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
         BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
-
 
     }
 
