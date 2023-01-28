@@ -6,14 +6,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSub;
 
 
-public class AutoTimedDrive extends CommandBase {
+public class AutoDriveTimed extends CommandBase {
 	double outputMagnitude;
 	double curve;
 	double time;
 	Timer localTimeMain = new Timer();
 
 	
-    public AutoTimedDrive(double time, double outputMagnitude, double curve) {
+    public AutoDriveTimed(double time, double outputMagnitude, double curve) {
      
     	this.outputMagnitude = outputMagnitude;
     	this.curve = curve;
