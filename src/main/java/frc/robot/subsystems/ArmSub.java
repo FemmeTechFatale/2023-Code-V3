@@ -11,37 +11,33 @@ public class ArmSub extends SubsystemBase {
     private final static Talon MamaArm = new Talon(Constants.PWMPort.MamaArmPort);
     private final static Talon BabyArm = new Talon(Constants.PWMPort.BabyArmPort);
 
-    public void runMotor() {
+    public static void runMotor() {
         
         //if potentiometer value is in range (min-max), then run normally
-        if (Constants.StringPot(Constants.PWMPort.PapaArmPort) <= Constants.StringPotLimits.LSArmMax && 
-            Constants.StringPot(Constants.PWMPort.PapaArmPort) >= Constants.StringPotLimits.LSArmMin) {
+        if((Constants.StringPot(Constants.PWMPort.PapaArmPort) <= Constants.StringPotLimits.LSArmMax) && 
+            (Constants.StringPot(Constants.PWMPort.PapaArmPort) >= Constants.StringPotLimits.LSArmMin)) {
             PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
         }
         //else (if potentiometer is not in the range)...
-        else {
-            //if the potentiometer exceeds the maximum
-            if (Constants.StringPot(Constants.PWMPort.PapaArmPort) > Constants.StringPotLimits.LSArmMax) {
-                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1) > 0) {
-                    PapaArm.set(0);
-                }
-                else {
-                    //set to any value idk
-                }
-
+        else if (Constants.StringPot(Constants.PWMPort.PapaArmPort) > Constants.StringPotLimits.LSArmMax) {
+            if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1) > 0) {
+                PapaArm.set(0);
             }
             else {
-                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1) < 0) {
-                    PapaArm.set(0);
-                }
-                else {}
+                PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1));
             }
-            //if pot exceeds 100/max, set input to 0
-
-            //if pot exceeds 0/min 
-            PapaArm.set(0);
-            //Constants.StringPot(20); //wtf does this even do
         }
+        else {
+            if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1) < 0) {
+                PapaArm.set(0);
+            }
+            else {
+                PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1));
+            }
+        }
+        
+
+
         
         if (Constants.StringPot(Constants.PWMPort.MamaArmPort) < 100) {
             MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));

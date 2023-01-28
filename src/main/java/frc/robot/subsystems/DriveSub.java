@@ -36,7 +36,7 @@ public class DriveSub extends SubsystemBase {
 
     public void DifferentialDrive() {
         //m_drive.(false);
-        m_drive.arcadeDrive((RobotContainer.m_driverController.getRawAxis(0)*.8), -(RobotContainer.m_driverController.getRawAxis(1)*.8));
+      
       
       if (Constants.StringPot(Constants.OperatorConstants.kDriverControllerPort) < 100) {
         LeftFront.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,1));
@@ -48,6 +48,7 @@ public class DriveSub extends SubsystemBase {
       }
 
       }
+    
     
       /* public static double getPower() {
         return(RightFront.getEncoder());
