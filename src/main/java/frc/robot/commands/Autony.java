@@ -8,7 +8,7 @@ public class Autony extends SequentialCommandGroup{ //imagine the beginning of m
 
         addCommands( 
             
-            new AutoDrive(1,2,3),
+            new AutoTimedDrive(1,2,3),
             //I did random values 
 
             new ParallelCommandGroup(
