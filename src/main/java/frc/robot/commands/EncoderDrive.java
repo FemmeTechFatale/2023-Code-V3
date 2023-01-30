@@ -25,13 +25,13 @@ public class EncoderDrive extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-      m_rightEncoder = DriveSub.RightFront.getEncoder();
+      /*m_rightEncoder = DriveSub.RightFront.getEncoder();
       m_rightEncoder.setPosition(0);
       DriveSub.LeftFront.setIdleMode(IdleMode.kBrake);
       //DriveTrain.LeftBack.setIdleMode(IdleMode.kBrake);
       DriveSub.RightFront.setIdleMode(IdleMode.kBrake);
       //DriveTrain.RightBack.setIdleMode(IdleMode.kBrake);
-      DriveSub.m_drive.feed();
+      DriveSub.m_drive.feed(); */
     }
   
     // Called every time the scheduler runs while the command is scheduled.

@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -18,10 +19,10 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public final class Constants {
 
   public static final class CANPort {
-    public static final int kLeftMotorFrontPort = 2;
-    //public static final int kLeftMotorBackPort = 3;
-    public static final int kRightMotorFrontPort = 3;
-    //public static final int kRightMotorBackPort = 4;
+    public static final int kLeftMotorFrontPort = 0;
+    public static final int kLeftMotorBackPort = 1;
+    public static final int kRightMotorFrontPort = 2;
+    public static final int kRightMotorBackPort = 3;
   }
 
   public static class OperatorConstants {
@@ -31,9 +32,9 @@ public final class Constants {
   }
 
   public static final class PWMPort {
-    public static final int PapaArmPort = 0;
-    public static final int MamaArmPort = 1;
-    public static final int BabyArmPort = 2;
+    public static final int PapaArmPort = 4;
+    public static final int MamaArmPort = 5;
+    public static final int BabyArmPort = 6;
   }
 
   public static final class StringPotLimits {
@@ -45,6 +46,13 @@ public final class Constants {
 
   }
 
+  public static final class ConversionFormulas {
+    //formula: ticks * ticks/rotation * gear ratio * pi * unit
+     public static double conversionFeet = 1/42 * 8.45 * Math.PI * 1/12;
+  }
+ 
+
+  static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   static DigitalInput toplimitSwitch = new DigitalInput(0);
   static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(0);
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);

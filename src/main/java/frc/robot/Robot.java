@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -49,6 +50,8 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    //double encoderPosition = EncoderDrive.m_rightEncoder.getPosition() * Constants.ConversionFormulas.conversionFeet;
+    //SmartDashboard.putString("DB/String 1", "Feet: "+ encoderPosition);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -94,7 +97,8 @@ public class Robot extends TimedRobot {
     
     //displays # of rotations (negative # = backwards; positive # = forward) and velocity in RPM
     //SmartDashboard.putString("DB/String 1", Double.toString(DriveTrain.RightFront.getEncoder().getPosition()));
-    SmartDashboard.putString("DB/String 2", Double.toString(Constants.ArmBasePot.get()));
+    //SmartDashboard.putString("DB/String 2", Double.toString(Constants.ArmBasePot.get()));
+    Shuffleboard.getTab("gyro test tab").add(Constants.gyro);
     //SmartDashboard.putString("DB/String 1", Double.toString(ArmPrimarySub.talonArmPrime.kArmPrimary.getEncoder().getPosition()));
     //SmartDashboard.putString("DB/String 0", "Test 1");
   }
