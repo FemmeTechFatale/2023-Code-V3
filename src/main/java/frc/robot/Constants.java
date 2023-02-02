@@ -7,6 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -53,10 +55,19 @@ public final class Constants {
  
 
   static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  public static Encoder driveEncoder = new Encoder(0, 1, true, EncodingType.k4X);
   static DigitalInput toplimitSwitch = new DigitalInput(0);
   static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(0);
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);
 
+  
+  
+  public static double GyroReading(){
+    return gyro.getAngle(); 
+  }
+  
+  
+  
   public static boolean LimitSwitch(int limitID) {
     boolean limitState = false;
     

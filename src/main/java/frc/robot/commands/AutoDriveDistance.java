@@ -1,13 +1,10 @@
 package frc.robot.commands;
 
-import com.revrobotics.RelativeEncoder;
-
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.Constants;
-import frc.robot.Constants.ConversionFormulas;
 
 /** An example command that uses an example subsystem. */
 public class AutoDriveDistance extends CommandBase {
@@ -17,8 +14,13 @@ public class AutoDriveDistance extends CommandBase {
 	double curve;
 	double distanceRotations;
 	double distanceFeet;
+	double setpoint;
 
-	private static RelativeEncoder m_rightEncoder;
+	//PID controller variables
+	double kP;
+	double kI;
+	double kD;
+	PIDController drivePID = new PIDController(kP, kI, kD);
   
 	//
 	public AutoDriveDistance(double distance, double outputMagnitude) {
@@ -29,13 +31,21 @@ public class AutoDriveDistance extends CommandBase {
   
 	// Called when the command is initially scheduled.
 	@Override
-	public void initialize() {}
+	public void initialize() {
+		//change PID values here
+		kP = 0.5;
+		kI = 0.05;
+		kD = 0.05;
+		setpoint = distanceFeet;
+		Constants.driveEncoder.reset();
+
+	}
   
 	// Called every time the scheduler runs while the command is scheduled.
 	@Override
 	public void execute() {
-		DriveSub.autoDrive(outputMagnitude, curve);
-	  
+		DriveSub.autoDrive(drivePID.calculate(Constants.driveEncoder.getDistance(), setpoint), 0);
+		// *figure out what to set curve to
 	}
   
 	// Called once the command ends or is interrupted.
@@ -46,8 +56,8 @@ public class AutoDriveDistance extends CommandBase {
 	// Returns true when the command should end.
 	@Override
 	public boolean isFinished() {
-		if (distanceFeet < Math.abs(m_rightEncoder.getPosition())) {
-			//if current position is greater than target distance, finish command
+		if (drivePID.atSetpoint()) {
+			//try getPositionError() if atSetpoint() doesn't work?
 			return true;
 		}
 		else {

@@ -18,8 +18,11 @@ public class Autony extends SequentialCommandGroup{ //imagine the beginning of m
             new AutoArm(0),
             //for now...
             //are we doing the arm in Autony
-            new AutoWait(1)
+            new AutoWait(1),
             //value for now
+
+            new AutoDriveTimed(1, 2, 3)
+            //value for now 
 
         );
     }

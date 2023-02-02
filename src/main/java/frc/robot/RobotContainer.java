@@ -39,8 +39,8 @@ public class RobotContainer {
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //public final static CommandXboxController m_driverController =
   //   new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  public final static CommandJoystick m_driverController =
-     new CommandJoystick(OperatorConstants.kDriverControllerPort);
+  public final static CommandXboxController m_driverController =
+     new CommandXboxController(OperatorConstants.kDriverControllerPort);
   public final static CommandJoystick m_ArmOneJoy = new CommandJoystick(OperatorConstants.kArmJoyOnePort);
   public final static CommandJoystick m_ArmTwoJoy = new CommandJoystick(OperatorConstants.kArmJoyTwoPort);
   //public final static CommandXboxController m_ArmOneJoy = 
@@ -84,7 +84,7 @@ public class RobotContainer {
 
     //m_driverController.a().whileTrue(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(2)));
 
-    //m_driverController.x().whileTrue(new ArmSecondary(m_ArmSecondarySub,m_driverController.getRawAxis(3)));
+    //m_driverController.x().(Constants.gyro.calibrate());
 
   }
 
