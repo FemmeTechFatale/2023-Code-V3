@@ -19,7 +19,7 @@ public class ServoSub extends SubsystemBase {
     public void servoForward() {
 
       ServoOne.set(0.73);
-      //ServoTwo.set(0.73);
+      ServoTwo.set(.28);
       //Value for now
       
     
@@ -28,7 +28,7 @@ public class ServoSub extends SubsystemBase {
     // claw closed
     public void servoBackward() {
       ServoOne.set(0.28);
-      //ServoTwo.set(0.28);
+      ServoTwo.set(0.73);
       //value for now
         
     }

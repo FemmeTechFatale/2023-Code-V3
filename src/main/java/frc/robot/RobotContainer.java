@@ -86,8 +86,8 @@ public class RobotContainer {
     //    .onTrue(new AutoDriveDistance(10, 1));
     
     m_driverController.b().onTrue(new AutoDriveDistance(10, 1));
-    m_driverController.x().onTrue(new Servo(m_ServoSub, false));
-    m_driverController.y().onTrue(new Servo(m_ServoSub, true));
+    //m_driverController.x().onTrue(new Servo(m_ServoSub, false));
+    //m_driverController.y().onTrue(new Servo(m_ServoSub, true));
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
