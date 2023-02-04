@@ -37,6 +37,9 @@ public final class Constants {
     public static final int PapaArmPort = 4;
     public static final int MamaArmPort = 5;
     public static final int BabyArmPort = 6;
+    public static final int ServoOnePort = 7;
+    public static final int ServoTwoPort = 8;
+
   }
 
   public static final class StringPotLimits {
@@ -55,9 +58,9 @@ public final class Constants {
  
 
   static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-  public static Encoder driveEncoder = new Encoder(0, 1, true, EncodingType.k4X);
+  public static Encoder driveEncoder = new Encoder(2, 3, true, EncodingType.k4X);
   static DigitalInput toplimitSwitch = new DigitalInput(0);
-  static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(0);
+  static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(1);
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);
 
   

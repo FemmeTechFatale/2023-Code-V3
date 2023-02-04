@@ -8,12 +8,15 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Arm;
+import frc.robot.commands.AutoDriveDistance;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ArmSub;
 import frc.robot.commands.Drive;
+import frc.robot.commands.Servo;
 import frc.robot.commands.EncoderDrive;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.ServoSub;
 import frc.robot.subsystems.DriveSub;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
@@ -33,6 +36,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final ArmSub m_ArmSub = new ArmSub();
   private final DriveSub m_robotTrain = new DriveSub();
+  private final ServoSub m_ServoSub = new ServoSub();
 
   //public static final EncoderDrive encoderDrive = new EncoderDrive(0, 0);
 
@@ -77,7 +81,13 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
-
+    
+    //new Trigger(m_driverController::7)
+    //    .onTrue(new AutoDriveDistance(10, 1));
+    
+    m_driverController.b().onTrue(new AutoDriveDistance(10, 1));
+    m_driverController.x().onTrue(new Servo(m_ServoSub, false));
+    m_driverController.y().onTrue(new Servo(m_ServoSub, true));
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());

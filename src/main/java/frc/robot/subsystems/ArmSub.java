@@ -12,6 +12,14 @@ public class ArmSub extends SubsystemBase {
     private final static Talon BabyArm = new Talon(Constants.PWMPort.BabyArmPort);
 
     public static void runMotor() {
+
+        ////No limits on arm motion////
+        PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
+        MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
+        BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
+
+        ////Limits. Not set to anything particular as of yet, not testing with string pots////
+        /* //Start Super Comment
         
         //if potentiometer value is in range (min-max), then run normally
         //papa arm pot
@@ -106,6 +114,8 @@ public class ArmSub extends SubsystemBase {
             BabyArm.set(0);
         }
 
+
+        */ //End super comment
     }
 
     
