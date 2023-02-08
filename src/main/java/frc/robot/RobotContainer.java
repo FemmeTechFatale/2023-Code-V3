@@ -9,13 +9,15 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Arm;
 import frc.robot.commands.AutoDriveDistance;
+import frc.robot.commands.Autony;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.GyroMotor;
 import frc.robot.subsystems.ArmSub;
 import frc.robot.commands.Drive;
 import frc.robot.commands.Servo;
-import frc.robot.commands.EncoderDrive;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.GyroMotorSub;
 import frc.robot.subsystems.ServoSub;
 import frc.robot.subsystems.DriveSub;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -37,6 +39,7 @@ public class RobotContainer {
   private final ArmSub m_ArmSub = new ArmSub();
   private final DriveSub m_robotTrain = new DriveSub();
   private final ServoSub m_ServoSub = new ServoSub();
+  private final GyroMotorSub m_GyroMotorSub = new GyroMotorSub();
 
   //public static final EncoderDrive encoderDrive = new EncoderDrive(0, 0);
 
@@ -62,6 +65,7 @@ public class RobotContainer {
     configureBindings();
 
     m_ArmSub.setDefaultCommand(new Arm(m_ArmSub));
+    m_GyroMotorSub.setDefaultCommand(new GyroMotor(m_GyroMotorSub));
     m_robotTrain.setDefaultCommand(new Drive(m_robotTrain));
     
     
@@ -85,7 +89,7 @@ public class RobotContainer {
     //new Trigger(m_driverController::7)
     //    .onTrue(new AutoDriveDistance(10, 1));
     
-    m_driverController.b().onTrue(new AutoDriveDistance(10, 1));
+    //m_driverController.b().onTrue(new AutoDriveDistance(10, 1));
     //m_driverController.x().onTrue(new Servo(m_ServoSub, false));
     //m_driverController.y().onTrue(new Servo(m_ServoSub, true));
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
@@ -105,7 +109,8 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    //return Autos.exampleAuto(m_exampleSubsystem);
+    return (new Autony(m_robotTrain));
   }
 
   public static double sendAxisValue(int controllerID, int axisNumber) {

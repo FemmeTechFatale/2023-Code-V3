@@ -10,15 +10,18 @@ public class AutoDriveTimed extends CommandBase {
 	double outputMagnitude;
 	double curve;
 	double time;
+	private final DriveSub m_driveSub;
 	Timer localTimeMain = new Timer();
 
 	
-    public AutoDriveTimed(double time, double outputMagnitude, double curve) {
+    public AutoDriveTimed(DriveSub driveSub, double time, double outputMagnitude, double curve) {
      
     	this.outputMagnitude = outputMagnitude;
     	this.curve = curve;
     	this.time = time;
-    	
+		m_driveSub = driveSub;
+		addRequirements(m_driveSub);
+
     }
 
     // Called just before this Command runs the first time
@@ -31,18 +34,21 @@ public class AutoDriveTimed extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
-		SmartDashboard.putString("DB/String 1", Double.toString(localTimeMain.get()));
-        DriveSub.autoDrive(outputMagnitude, curve);
+		SmartDashboard.putString("DB/String 0", Double.toString(localTimeMain.get()));
+        m_driveSub.autoDrive(outputMagnitude, curve);
         
     }
     
 
     // Make this return true when this Command no longer needs to run execute()
     public boolean isFinished() {
-    	if (localTimeMain.get() > this.time) {
-    		return true;
+    	if (localTimeMain.get() > this.time)  {
+    		SmartDashboard.putString("DB/String 1", "still true");
+			return true;
 		}
 		else {
+			SmartDashboard.putString("DB/String 1", "not true!");
+
 			return false;
 		}
     }
@@ -52,6 +58,8 @@ public class AutoDriveTimed extends CommandBase {
     	//Robot.DriveTrain.stop();
 		localTimeMain.stop();
 		localTimeMain.reset();
+		DriveSub.autoDrive(0, 0);
+
     }
 
     // Called when another command which requires one or more of the same

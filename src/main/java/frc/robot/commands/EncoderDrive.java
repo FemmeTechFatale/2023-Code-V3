@@ -1,7 +1,8 @@
 package frc.robot.commands;
 
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSub;
 
@@ -25,13 +26,13 @@ public class EncoderDrive extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-      /*m_rightEncoder = DriveSub.RightFront.getEncoder();
+      m_rightEncoder = DriveSub.RightFront.getEncoder();
       m_rightEncoder.setPosition(0);
       DriveSub.LeftFront.setIdleMode(IdleMode.kBrake);
       //DriveTrain.LeftBack.setIdleMode(IdleMode.kBrake);
       DriveSub.RightFront.setIdleMode(IdleMode.kBrake);
       //DriveTrain.RightBack.setIdleMode(IdleMode.kBrake);
-      DriveSub.m_drive.feed(); */
+      DriveSub.m_drive.feed();
     }
   
     // Called every time the scheduler runs while the command is scheduled.

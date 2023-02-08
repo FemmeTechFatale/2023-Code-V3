@@ -37,14 +37,14 @@ public class AutoDriveDistance extends CommandBase {
 		kI = 0.05;
 		kD = 0.05;
 		setpoint = distanceFeet;
-		Constants.driveEncoder.reset();
+		Constants.Encoders.driveEncoder.reset();
 
 	}
   
 	// Called every time the scheduler runs while the command is scheduled.
 	@Override
 	public void execute() {
-		DriveSub.autoDrive(drivePID.calculate(Constants.driveEncoder.getDistance(), setpoint), 0);
+		DriveSub.autoDrive(drivePID.calculate(Constants.Encoders.driveEncoder.getDistance(), setpoint), 0);
 		// *figure out what to set curve to
 	}
   

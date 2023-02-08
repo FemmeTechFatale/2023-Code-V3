@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.commands.EncoderDrive;
 
 /**
  * A command to drive the robot with joystick input (passed in as {@link DoubleSupplier}s). Written
@@ -18,7 +17,7 @@ public class Drive extends CommandBase {
 
   public Drive(DriveSub subsystem) {
     m_drive = subsystem;
-    addRequirements(subsystem);
+    addRequirements(m_drive);
   }
 
 
@@ -42,7 +41,9 @@ public class Drive extends CommandBase {
   } 
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    
+  }
 
   // Returns true when the command should end.
   @Override

@@ -25,6 +25,7 @@ public final class Constants {
     public static final int kLeftMotorBackPort = 1;
     public static final int kRightMotorFrontPort = 2;
     public static final int kRightMotorBackPort = 3;
+    public static final int kGyroArmPort = 4; 
   }
 
   public static class OperatorConstants {
@@ -57,8 +58,12 @@ public final class Constants {
   }
  
 
+  public static final class Encoders {
+    //public static Encoder plgEncoder = new Encoder(null, null);
+    public static Encoder driveEncoder = new Encoder(2, 3, true, EncodingType.k4X);
+  }
+
   static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-  public static Encoder driveEncoder = new Encoder(2, 3, true, EncodingType.k4X);
   static DigitalInput toplimitSwitch = new DigitalInput(0);
   static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(1);
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);
@@ -67,6 +72,7 @@ public final class Constants {
   
   public static double GyroReading(){
     return gyro.getAngle(); 
+    
   }
   
   
