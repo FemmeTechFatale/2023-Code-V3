@@ -7,7 +7,7 @@ import frc.robot.Constants;
 
 public class Arm extends CommandBase {
 
-    private ArmSub localArmSub;
+    private final ArmSub localArmSub;
     public Arm(ArmSub incomingSub) {
         localArmSub = incomingSub;
         //Use addRequirements() here to declare subsystem dependencies

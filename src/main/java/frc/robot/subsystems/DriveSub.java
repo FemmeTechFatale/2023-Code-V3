@@ -14,17 +14,19 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class DriveSub extends SubsystemBase {
     
-    //public static CANSparkMax LeftFront = new CANSparkMax(CANPort.kLeftMotorFrontPort, MotorType.kBrushless);
-    //public static CANSparkMax LeftBack = new CANSparkMax(CANPort.kLeftMotorBackPort, MotorType.kBrushless);
+    public static CANSparkMax LeftFront = new CANSparkMax(CANPort.kLeftMotorFrontPort, MotorType.kBrushless);
+    public static CANSparkMax LeftBack = new CANSparkMax(CANPort.kLeftMotorBackPort, MotorType.kBrushless);
     //static MotorControllerGroup Left = new MotorControllerGroup(LeftFront, LeftBack);
-    public static Talon LeftFront = new Talon(CANPort.kLeftMotorFrontPort);
-    public static Talon LeftBack = new Talon(CANPort.kLeftMotorBackPort);
+    //public static Talon LeftFront = new Talon(CANPort.kLeftMotorFrontPort);
+    //public static Talon LeftBack = new Talon(CANPort.kLeftMotorBackPort);
     static MotorControllerGroup Left = new MotorControllerGroup(LeftFront, LeftBack);
 
 
     // The motors on the right side of the drive.
-    public static Talon RightFront = new Talon(CANPort.kRightMotorFrontPort);
-    public static Talon RightBack = new Talon(CANPort.kRightMotorBackPort);
+    public static CANSparkMax RightFront = new CANSparkMax(CANPort.kRightMotorFrontPort, MotorType.kBrushless);
+    public static CANSparkMax RightBack = new CANSparkMax(CANPort.kRightMotorBackPort, MotorType.kBrushless);    
+    //public static Talon RightFront = new Talon(CANPort.kRightMotorFrontPort);
+    //public static Talon RightBack = new Talon(CANPort.kRightMotorBackPort);
     static MotorControllerGroup Right = new MotorControllerGroup(RightFront, RightBack);
     
 

@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.SPI.Port;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -21,11 +23,11 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 public final class Constants {
 
   public static final class CANPort {
-    public static final int kLeftMotorFrontPort = 0;
-    public static final int kLeftMotorBackPort = 1;
-    public static final int kRightMotorFrontPort = 2;
-    public static final int kRightMotorBackPort = 3;
-    public static final int kGyroArmPort = 4; 
+    public static final int kLeftMotorFrontPort = 2;
+    public static final int kLeftMotorBackPort = 3;
+    public static final int kRightMotorFrontPort = 4;
+    public static final int kRightMotorBackPort = 5;
+    public static final int kClawPort = 6;
   }
 
   public static class OperatorConstants {
@@ -35,9 +37,10 @@ public final class Constants {
   }
 
   public static final class PWMPort {
-    public static final int PapaArmPort = 4;
-    public static final int MamaArmPort = 5;
-    public static final int BabyArmPort = 6;
+    public static final int PapaArmPort = 0;
+    public static final int MamaArmPort = 1;
+    public static final int BabyArmPort = 2;
+    public static final int kGyroArmPort = 3; 
     public static final int ServoOnePort = 7;
     public static final int ServoTwoPort = 8;
 
@@ -62,8 +65,9 @@ public final class Constants {
     //public static Encoder plgEncoder = new Encoder(null, null);
     public static Encoder driveEncoder = new Encoder(2, 3, true, EncodingType.k4X);
   }
-
-  static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  //static SPI.Port hi = new SPI.Port(4));
+  static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
+  static ADXRS450_Gyro clawGyro = new ADXRS450_Gyro(SPI.Port(kMXP));
   static DigitalInput toplimitSwitch = new DigitalInput(0);
   static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(1);
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);
@@ -71,7 +75,7 @@ public final class Constants {
   
   
   public static double GyroReading(){
-    return gyro.getAngle(); 
+    return driveGyro.getAngle(); 
     
   }
   
