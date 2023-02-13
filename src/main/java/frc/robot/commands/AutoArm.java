@@ -6,11 +6,21 @@ import frc.robot.subsystems.ArmSub;
 
 public class AutoArm extends CommandBase {
     
-    private final int m_ValueofArm; //the on and off toggle
-    public AutoArm(int ValueofArm) {
-        m_ValueofArm = ValueofArm;
+    double localMotorPower;
+    double localStringPotLimits;
+    private final ArmSub localArmSub;
+
+    public AutoArm(ArmSub incomingSub, double incomingMotorPower, double StringPotLimits) {
+            
+        localArmSub = incomingSub;
+    	localMotorPower = incomingMotorPower;
+    	localStringPotLimits = StringPotLimits;
+    	addRequirements(localArmSub);
+
     }
 
+
+    
     // Called when the command is initially scheduled.
     public void initialize() {
 

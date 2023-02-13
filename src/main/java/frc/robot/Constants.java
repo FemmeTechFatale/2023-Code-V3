@@ -28,6 +28,7 @@ public final class Constants {
     public static final int kRightMotorFrontPort = 4;
     public static final int kRightMotorBackPort = 5;
     public static final int kClawPort = 6;
+    public static final int MamaArmPort = 7; //What value??
   }
 
   public static class OperatorConstants {
@@ -38,7 +39,7 @@ public final class Constants {
 
   public static final class PWMPort {
     public static final int PapaArmPort = 0;
-    public static final int MamaArmPort = 1;
+    //mama arm was here
     public static final int BabyArmPort = 2;
     public static final int kGyroArmPort = 3; 
     public static final int ServoOnePort = 7;
@@ -67,7 +68,7 @@ public final class Constants {
   }
   //static SPI.Port hi = new SPI.Port(4));
   static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
-  static ADXRS450_Gyro clawGyro = new ADXRS450_Gyro(SPI.Port(kMXP));
+  static ADXRS450_Gyro clawGyro = new ADXRS450_Gyro(SPI.Port.kMXP);
   static DigitalInput toplimitSwitch = new DigitalInput(0);
   static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(1);
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);
