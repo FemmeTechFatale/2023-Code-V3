@@ -14,23 +14,46 @@ public class ArmSub extends SubsystemBase {
     private final static CANSparkMax MamaArm = new CANSparkMax(Constants.CANPort.MamaArmPort, MotorType.kBrushless);
     private final static Talon BabyArm = new Talon(Constants.PWMPort.BabyArmPort);
 
-    public static void runAutoMotor(int incomingPower, int ThreeBears) {
+    public static void runAutoMotor(int armBearNumber, double incomingPower) {
     
-        /*double axisOutput = 0;
-        switch(incomingPower) {
+    //double axisOutput = 0;
+        switch(armBearNumber) {
             case 0:
-                axisOutput = PapaArm.set(incomingPower);
-            break;
+                if((Constants.StringPot(Constants.PWMPort.PapaArmPort) <= Constants.StringPotLimits.LSArmMax) && 
+                    (Constants.StringPot(Constants.PWMPort.PapaArmPort) >= Constants.StringPotLimits.LSArmMin)) {
+                        PapaArm.set(incomingPower);
+                }
+                //else if potentiometer is above the range...
+                else if (Constants.StringPot(Constants.PWMPort.PapaArmPort) > Constants.StringPotLimits.LSArmMax) {
+                    if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1) > 0) {
+                        PapaArm.set(0);
+                    }
+                    else {
+                        PapaArm.set(incomingPower);
+                    }
+                }
+                //else if potentiometer is below the range
+                else {
+                    if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 1) < 0) {
+                        PapaArm.set(0);
+                    }
+                    else {
+                        PapaArm.set(incomingPower);
+                    }
+                }
+            break; //case 0 break
             case 1:
-                axisOutput = MamaArm.getRawAxis(ThreeBears);
+                //axisOutput = MamaArm.set(incomingPower)
+                MamaArm.set(incomingPower);
             break;
             case 2:
-                axisOutput = BabyArm.getRawAxis(ThreeBears);
+                //axisOutput = BabyArm.set(incomingPower);
+                BabyArm.set(incomingPower);
             break;
          }
         
         //PapaArm.set(incomingPower);
-        */
+
     } 
 
 
