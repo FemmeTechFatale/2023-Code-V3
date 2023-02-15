@@ -11,8 +11,28 @@ import frc.robot.RobotContainer;
 public class ArmSub extends SubsystemBase {
     //Papa = Arm 1, Mama = 2, Baby = 3//
     private final static Talon PapaArm = new Talon(Constants.PWMPort.PapaArmPort);
-    private final static Talon MamaArm = new Talon(Constants.CANPort.MamaArmPort);
+    private final static CANSparkMax MamaArm = new CANSparkMax(Constants.CANPort.MamaArmPort, MotorType.kBrushless);
     private final static Talon BabyArm = new Talon(Constants.PWMPort.BabyArmPort);
+
+    public static void runAutoMotor(int incomingPower, int ThreeBears) {
+    
+        /*double axisOutput = 0;
+        switch(incomingPower) {
+            case 0:
+                axisOutput = PapaArm.set(incomingPower);
+            break;
+            case 1:
+                axisOutput = MamaArm.getRawAxis(ThreeBears);
+            break;
+            case 2:
+                axisOutput = BabyArm.getRawAxis(ThreeBears);
+            break;
+         }
+        
+        //PapaArm.set(incomingPower);
+        */
+    } 
+
 
     public static void runMotor() {
 

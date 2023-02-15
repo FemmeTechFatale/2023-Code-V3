@@ -8,7 +8,7 @@ import frc.robot.Constants;
 
 public class ClawSub extends SubsystemBase {
     
-    private final static CANSparkMax Claw = new CANSparkMax(Constants.CANPort.kClawPort, MotorType.kBrushless);
+    private final static CANSparkMax Claw = new CANSparkMax(Constants.CANPort.kClawPort, MotorType.kBrushed);
 
     public static void runMotor(double motorPower) {
         Claw.set(motorPower);

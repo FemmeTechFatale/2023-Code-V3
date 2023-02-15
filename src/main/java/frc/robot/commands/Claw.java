@@ -26,6 +26,6 @@ public class Claw extends CommandBase {
     }
     
     public boolean isFinished() {
-        return true;
+        return false;
     }
 }
