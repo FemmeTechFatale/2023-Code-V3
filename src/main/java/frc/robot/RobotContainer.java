@@ -108,8 +108,11 @@ public class RobotContainer {
     //m_driverController.a().whileTrue(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(2)));
 
     //m_driverController.x().(Constants.gyro.calibrate());
-    m_driverController.a().whileTrue(new Claw(m_ClawSub,1));
-    m_driverController.b().whileTrue(new Claw(m_ClawSub,-1));
+    //check open close
+    m_driverController.a().toggleOnTrue(new Claw(m_ClawSub,1));
+    m_driverController.a().toggleOnFalse(new Claw(m_ClawSub,-1));
+
+    //need a button to clear motor state?
     
   }
 
