@@ -50,7 +50,7 @@ public class DriveSub extends SubsystemBase {
     }
 
     public void DifferentialDrive() {
-      m_drive.arcadeDrive(RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,1),
+      m_drive.arcadeDrive(-RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,1),
       -RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,0));     
       
       //if (Constants.StringPot(Constants.OperatorConstants.kDriverControllerPort) < 100) {

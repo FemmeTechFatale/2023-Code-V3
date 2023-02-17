@@ -29,6 +29,8 @@ public final class Constants {
     public static final int kRightMotorBackPort = 5;
     public static final int kClawPort = 6;
     public static final int MamaArmPort = 7; //What value??
+    public static final int BabyArmPort = 8;
+
   }
 
   public static class OperatorConstants {
@@ -40,7 +42,6 @@ public final class Constants {
   public static final class PWMPort {
     public static final int PapaArmPort = 0;
     //mama arm was here
-    public static final int BabyArmPort = 2;
     public static final int kGyroArmPort = 3; 
     public static final int ServoOnePort = 7;
     public static final int ServoTwoPort = 8;
@@ -68,9 +69,12 @@ public final class Constants {
   }
   //static SPI.Port hi = new SPI.Port(4));
   static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
-  static ADXRS450_Gyro clawGyro = new ADXRS450_Gyro(SPI.Port.kMXP);
-  static DigitalInput toplimitSwitch = new DigitalInput(0);
-  static AnalogPotentiometer ArmBasePot = new AnalogPotentiometer(1);
+  //static ADXRS450_Gyro clawGyro = new ADXRS450_Gyro(SPI.Port.kMXP);
+  static DigitalInput toplimitSwitch = new DigitalInput(2);
+  static AnalogPotentiometer MamaArmBasePot = new AnalogPotentiometer(0);
+  static AnalogPotentiometer BabyArmBasePot = new AnalogPotentiometer(1);
+  //static AnalogPotentiometer BabyArmBasePot = new AnalogPotentiometer(1);
+
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);
 
   
@@ -79,7 +83,7 @@ public final class Constants {
     return driveGyro.getAngle(); 
     
   }
-  
+   
   
   
   public static boolean LimitSwitch(int limitID) {
@@ -99,7 +103,13 @@ public final class Constants {
 
     switch (PotID) {
       case 0:
-        potValue=ArmBasePot.get();
+        potValue=BabyArmBasePot.get();
+        break;
+      case 1:
+        potValue=MamaArmBasePot.get();
+        break;
+      case 2:
+        potValue=BabyArmBasePot.get();
         break;
     }
     

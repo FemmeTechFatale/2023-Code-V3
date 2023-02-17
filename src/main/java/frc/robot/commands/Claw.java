@@ -6,7 +6,7 @@ import frc.robot.subsystems.ClawSub;
 public class Claw extends CommandBase {
     
     private final ClawSub localClawSub;
-    public boolean clawStatus;
+    public static boolean clawStatus = false;
     private double localMotorPower;
     public Claw(ClawSub incomingSub, double incomingMotorPower) {
         localClawSub = incomingSub;
@@ -16,16 +16,17 @@ public class Claw extends CommandBase {
     }
     
     public void initialize() {
+        clawStatus = true;
     }
 
     public void execute() {
         ClawSub.runMotor(localMotorPower);
-        clawStatus = ClawSub.checkStatus();
-        
+         
     }
 
     public void end(boolean isFinished) {
         ClawSub.runMotor(0);
+        clawStatus = false;
     }
     
     public boolean isFinished() {

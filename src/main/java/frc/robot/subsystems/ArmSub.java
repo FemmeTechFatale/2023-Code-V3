@@ -12,7 +12,7 @@ public class ArmSub extends SubsystemBase {
     //Papa = Arm 1, Mama = 2, Baby = 3//
     private final static Talon PapaArm = new Talon(Constants.PWMPort.PapaArmPort);
     private final static CANSparkMax MamaArm = new CANSparkMax(Constants.CANPort.MamaArmPort, MotorType.kBrushless);
-    private final static Talon BabyArm = new Talon(Constants.PWMPort.BabyArmPort);
+    private final static CANSparkMax BabyArm = new CANSparkMax(Constants.CANPort.BabyArmPort, MotorType.kBrushless);
 
     public static void runAutoMotor(int armBearNumber, double incomingPower) {
     

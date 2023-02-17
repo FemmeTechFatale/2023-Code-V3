@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Claw;
 import frc.robot.subsystems.ArmSub;
+import frc.robot.subsystems.ClawSub;
 import frc.robot.subsystems.DriveSub;
 
 /**
@@ -99,12 +101,12 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putString("DB/String 2", Double.toString(Constants.ArmBasePot.get()));
     //Shuffleboard.getTab("gyro test tab").add(Constants.gyro);
     SmartDashboard.putString("DB/String 1", Double.toString(Constants.GyroReading()));
-    SmartDashboard.putString("DB/String 2", Double.toString(Constants.StringPot(Constants.PWMPort.PapaArmPort)));
-    SmartDashboard.putString("DB/String 3", Double.toString(Constants.StringPot(Constants.CANPort.MamaArmPort)));
-    SmartDashboard.putString("DB/String 4", Double.toString(Constants.StringPot(Constants.PWMPort.BabyArmPort)));
+    SmartDashboard.putString("DB/String 2", Double.toString(Constants.StringPot(0)));
+    SmartDashboard.putString("DB/String 3", Double.toString(Constants.StringPot(1)));
+    //SmartDashboard.putString("DB/String 4", Double.toString(Constants.StringPot(Constants.CANPort.BabyArmPort)));
 
     //fix m_clawsub call
-    SmartDashboard.putString("Claw Status", Boolean.toString(RobotContainer.m_ClawSub.checkStatus()));
+    SmartDashboard.putString("DB/String 5", Boolean.toString(ClawSub.checkStatus()));
 
 
 
