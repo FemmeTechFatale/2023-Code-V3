@@ -20,12 +20,12 @@ public class Claw extends CommandBase {
     }
 
     public void execute() {
-        localClawSub.runMotor(-1);
+        localClawSub.runMotor(0);
          
     }
 
     public void end(boolean isFinished) {
-        localClawSub.runMotor(.5);
+        localClawSub.runMotor(0);
         clawStatus = false;
     }
     

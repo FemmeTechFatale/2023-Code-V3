@@ -43,6 +43,7 @@ public class RobotContainer {
   private final ServoSub m_ServoSub = new ServoSub();
   private final GyroMotorSub m_GyroMotorSub = new GyroMotorSub();
   private final ClawSub m_ClawSub = new ClawSub();
+  public static boolean limitToggle;
 
   //public static final EncoderDrive encoderDrive = new EncoderDrive(0, 0);
 
@@ -102,10 +103,10 @@ public class RobotContainer {
     //m_driverController.a().whileTrue(new ArmPrimary(m_ArmPrimarySub,m_driverController.getRawAxis(2)));
 
     //m_driverController.x().(Constants.gyro.calibrate());
-    //check open close
-    m_driverController.a().toggleOnTrue(new Claw(m_ClawSub,1));
-    //m_driverController.a().toggleOnFalse(new Claw(m_ClawSub,-1));
 
+    //opens and closes claw; inc Motor Power does nothing
+    m_driverController.a().toggleOnTrue(new Claw(m_ClawSub,1));
+    
     //need a button to clear motor state?
     
   }

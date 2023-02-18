@@ -105,8 +105,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("DB/String 3", Double.toString(Constants.StringPot(1)));
     //SmartDashboard.putString("DB/String 4", Double.toString(Constants.StringPot(Constants.CANPort.BabyArmPort)));
 
-    //fix m_clawsub call
     SmartDashboard.putString("DB/String 5", Boolean.toString(ClawSub.checkStatus()));
+
+    // arm limit toggle button + status display
+    RobotContainer.limitToggle = SmartDashboard.getBoolean("DB/Button 0", false);
+    SmartDashboard.putString("DB/String 6", Boolean.toString(RobotContainer.limitToggle));
 
 
 

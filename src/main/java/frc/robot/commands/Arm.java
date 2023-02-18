@@ -4,10 +4,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSub;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class Arm extends CommandBase {
 
     private final ArmSub localArmSub;
+    public static boolean limitStatus = false;
     public Arm(ArmSub incomingSub) {
         localArmSub = incomingSub;
         //Use addRequirements() here to declare subsystem dependencies
@@ -15,25 +17,19 @@ public class Arm extends CommandBase {
 
     }
     
-  public void initialize() {}
+  public void initialize() {
+    limitStatus = false;
+  }
 
   //dear Mr. Mathisen, When you see this tmr, you'll probally wonder what I'm doing
   //I don't really know either but I tried really hard. Thanks - lezzles
   public void execute() {
-    localArmSub.runMotor();
-
-    /*if (Math.abs(Constants.Limits.LSArmMax) < Math.abs(ArmSub.PapaArm.get())); {
-        //for now dawg
-        ArmSub.PapaArm.stopMotor();
+    if (RobotContainer.limitToggle) {
+      localArmSub.runMotorLimits();
     }
-
-    if (Math.abs(Constants.Limits.LSArmMin) > Math.abs(ArmSub.PapaArm.get())); {
-        //for now dawg
-        ArmSub.PapaArm.stopMotor();
+    else {
+      localArmSub.runMotor();
     }
-    */
-
-    
     
   }
 
