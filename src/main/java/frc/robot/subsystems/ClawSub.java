@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
+//import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.commands.Claw;
 
@@ -19,6 +19,7 @@ public class ClawSub extends SubsystemBase {
         ClawController.set(motorPower);
     }
 
+    //returns a status for display
     public static boolean checkStatus() {
         if (Claw.clawStatus){
             return true;

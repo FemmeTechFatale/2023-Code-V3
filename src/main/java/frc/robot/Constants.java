@@ -41,6 +41,7 @@ public final class Constants {
 
   public static final class PWMPort {
     public static final int PapaArmPort = 0;
+    public static final int WristPort = 1;
     //mama arm was here
     public static final int kGyroArmPort = 3; 
     public static final int ServoOnePort = 7;

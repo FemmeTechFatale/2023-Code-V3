@@ -18,12 +18,10 @@ import frc.robot.subsystems.ArmSub;
 import frc.robot.subsystems.ClawSub;
 import frc.robot.commands.Drive;
 import frc.robot.commands.Servo;
-import frc.robot.commands.TestCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.GyroMotorSub;
 import frc.robot.subsystems.ServoSub;
 import frc.robot.subsystems.DriveSub;
-import frc.robot.subsystems.TestSub;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -45,7 +43,6 @@ public class RobotContainer {
   private final ServoSub m_ServoSub = new ServoSub();
   private final GyroMotorSub m_GyroMotorSub = new GyroMotorSub();
   private final ClawSub m_ClawSub = new ClawSub();
-  private final TestSub m_TestSub = new TestSub();
 
   //public static final EncoderDrive encoderDrive = new EncoderDrive(0, 0);
 
@@ -92,9 +89,6 @@ public class RobotContainer {
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
     
-    m_driverController.x().onTrue(new TestCommand(m_TestSub, .25, false));
-    m_driverController.y().onTrue(new TestCommand(m_TestSub, .25, true));
-    
     //new Trigger(m_driverController::7)
     //    .onTrue(new AutoDriveDistance(10, 1));
     
@@ -110,7 +104,7 @@ public class RobotContainer {
     //m_driverController.x().(Constants.gyro.calibrate());
     //check open close
     m_driverController.a().toggleOnTrue(new Claw(m_ClawSub,1));
-    m_driverController.a().toggleOnFalse(new Claw(m_ClawSub,-1));
+    //m_driverController.a().toggleOnFalse(new Claw(m_ClawSub,-1));
 
     //need a button to clear motor state?
     

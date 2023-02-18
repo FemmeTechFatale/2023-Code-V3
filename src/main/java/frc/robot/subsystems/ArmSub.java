@@ -13,6 +13,7 @@ public class ArmSub extends SubsystemBase {
     private final static Talon PapaArm = new Talon(Constants.PWMPort.PapaArmPort);
     private final static CANSparkMax MamaArm = new CANSparkMax(Constants.CANPort.MamaArmPort, MotorType.kBrushless);
     private final static CANSparkMax BabyArm = new CANSparkMax(Constants.CANPort.BabyArmPort, MotorType.kBrushless);
+    private final static Talon Wrist = new Talon(Constants.PWMPort.WristPort);
 
     public static void runAutoMotor(int armBearNumber, double incomingPower) {
     
@@ -50,6 +51,9 @@ public class ArmSub extends SubsystemBase {
                 //axisOutput = BabyArm.set(incomingPower);
                 BabyArm.set(incomingPower);
             break;
+            case 3:
+                Wrist.set(incomingPower);
+            break;
          }
         
         //PapaArm.set(incomingPower);
@@ -63,6 +67,7 @@ public class ArmSub extends SubsystemBase {
         PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
         MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
         BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
+        Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 0)*.5);
 
         ////Limits. Not set to anything particular as of yet, not testing with string pots////
         /* //Start Super Comment
