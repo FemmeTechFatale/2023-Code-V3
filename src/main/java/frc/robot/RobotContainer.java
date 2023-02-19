@@ -104,9 +104,12 @@ public class RobotContainer {
 
     //m_driverController.x().(Constants.gyro.calibrate());
 
-    //opens and closes claw; inc Motor Power does nothing
-    m_driverController.a().toggleOnTrue(new Claw(m_ClawSub,1));
+    //opens and closes claw; 
+    //m_driverController.a().toggleOnTrue(new Claw(m_ClawSub));
     
+    //New Claw Operator
+    m_ArmOneJoy.button(1).onTrue(new Claw(m_ClawSub));
+
     //need a button to clear motor state?
     
   }
@@ -126,27 +129,32 @@ public class RobotContainer {
     double axisOutput = 0;
     switch(controllerID) {
       case 0:
-        axisOutput = m_driverController.getRawAxis(axisNumber);
+        axisOutput = deadZone(m_driverController.getRawAxis(axisNumber), .1);
       break;
       case 1:
-        axisOutput = m_ArmOneJoy.getRawAxis(axisNumber);
+        axisOutput = deadZone(m_ArmOneJoy.getRawAxis(axisNumber), .1);
       break;
       case 2:
-        axisOutput = m_ArmTwoJoy.getRawAxis(axisNumber);
+        if (axisNumber == 2) {
+          axisOutput = deadZone(m_ArmTwoJoy.getRawAxis(axisNumber),.4);
+        }
+        else {
+          axisOutput = deadZone(m_ArmTwoJoy.getRawAxis(axisNumber),.1);
+        }
       break;
-
     }
-     
-    if ((axisNumber == 2)) {
-      if (Math.abs(axisOutput) < .4) {
-        axisOutput = 0;
-      }
-    }
-    else if (Math.abs(axisOutput) < .2) {
-      axisOutput = 0;
-    }
-    
-
     return axisOutput;
   }
+
+  private static double deadZone (double incomingAxisValue, double deadZoneValue) {
+    double modifiedAxisValue;
+    if (Math.abs(incomingAxisValue) < deadZoneValue) {
+      modifiedAxisValue = 0;
+    }
+    else {
+      modifiedAxisValue = incomingAxisValue;
+    }
+    return modifiedAxisValue;
+  }
+
 }

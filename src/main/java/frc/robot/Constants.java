@@ -28,7 +28,7 @@ public final class Constants {
     public static final int kRightMotorFrontPort = 4;
     public static final int kRightMotorBackPort = 5;
     public static final int kClawPort = 6;
-    public static final int MamaArmPort = 7; //What value??
+    public static final int MamaArmPort = 7;
     public static final int BabyArmPort = 8;
 
   }
@@ -42,7 +42,6 @@ public final class Constants {
   public static final class PWMPort {
     public static final int PapaArmPort = 0;
     public static final int WristPort = 1;
-    //mama arm was here
     public static final int kGyroArmPort = 3; 
     public static final int ServoOnePort = 7;
     public static final int ServoTwoPort = 8;
@@ -50,11 +49,14 @@ public final class Constants {
   }
 
   public static final class StringPotLimits {
-    public static final double LSArmMax = 99;
     public static final double LSArmMin = 1;
+    public static final double LSArmMax = 99;
+
+    public static final double mamaPotMax = .7;
+    public static final double mamaPotMin = .4;
     
-    public static final double LSDriveMax = 99;
-    public static final double LSDriveMin = 1;
+    public static final double babyPotMax = .8;
+    public static final double babyPotMin = .5;
 
   }
 
@@ -78,15 +80,11 @@ public final class Constants {
 
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);
 
-  
-  
   public static double GyroReading(){
     return driveGyro.getAngle(); 
     
   }
    
-  
-  
   public static boolean LimitSwitch(int limitID) {
     boolean limitState = false;
     
@@ -104,17 +102,17 @@ public final class Constants {
 
     switch (PotID) {
       case 0:
-        potValue=BabyArmBasePot.get();
-        break;
-      case 1:
         potValue=MamaArmBasePot.get();
         break;
-      case 2:
+      case 1:
         potValue=BabyArmBasePot.get();
         break;
     }
-    
     return potValue;
+  }
+
+  public static double SPDif(int PotID, double targetValue) {
+    return (targetValue - StringPot(PotID));
   }
 
 }

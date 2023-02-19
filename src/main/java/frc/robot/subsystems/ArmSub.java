@@ -149,13 +149,54 @@ public class ArmSub extends SubsystemBase {
         }
     } //end of runMotorLimits
 
-    public static boolean checkLimitStatus() {
-        if (Arm.limitStatus){
-            return true;
+    public static void runMotorLimitsv2() {
+
+        //Papa Arm Limits (not done yet)
+        PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
+        
+        //Mama Arm Limits
+        if (Math.abs(Constants.SPDif(0,Constants.StringPotLimits.mamaPotMin)) > .02) {
+            MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
+        }
+        else if (Constants.SPDif(0,Constants.StringPotLimits.mamaPotMin) > 0) {
+            if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1) > 0 ) {
+                MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
+            }
+            else {
+                MamaArm.set(0);
+            }
         }
         else {
-            return false;
+            if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1) < 0 ) {
+                MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
+            }
+            else {
+                MamaArm.set(0);
+            }
         }
+
+        //Baby Arm Limits
+        if (Math.abs(Constants.SPDif(0,Constants.StringPotLimits.mamaPotMin)) > .02) {
+            BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
+        }
+        else if (Constants.SPDif(0,Constants.StringPotLimits.mamaPotMin) > 0) {
+            if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1) > 0 ) {
+                BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
+            }
+            else {
+                BabyArm.set(0);
+            }
+        }
+        else {
+            if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1) < 0 ) {
+                BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
+            }
+            else {
+                BabyArm.set(0);
+            }
+        }
+
+        //Wrist Limits (no current limits set)
+        Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 0)*.5);
     }
-    
 }
