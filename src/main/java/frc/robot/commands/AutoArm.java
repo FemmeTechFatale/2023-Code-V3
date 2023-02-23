@@ -21,12 +21,13 @@ public class AutoArm extends CommandBase {
 
     // Called when the command is initially scheduled.
     public void initialize() {
-
+      localArmSub.autoComplete = false;
     }
     
     // Called every time the scheduler runs while the command is scheduled.
     public void execute() {
-        localArmSub.runAutoMotor(localThreeBears, localMotorPower);
+        //localArmSub.runAutoMotor(localThreeBears, localMotorPower);
+        localArmSub.runAutoMotorv2(localThreeBears, localMotorPower, localStringPotLimits);
     }
   
     // Called once the command ends or is interrupted.
@@ -36,9 +37,7 @@ public class AutoArm extends CommandBase {
    
     // Returns true when the command should end.
     public boolean isFinished() {
-      if (Constants.StringPot(0) >= localStringPotLimits) {
-        localArmSub.runAutoMotor(0, 2);
-        //value for now 
+      if (localArmSub.autoComplete) {
         return true;
       }
       else {

@@ -24,19 +24,19 @@ public class Claw extends CommandBase {
 
     public void execute() {
       if (localToggle) {
-        if (localTimer.hasElapsed(2)) {
-            localClawSub.runMotor(-1);
+        if (localTimer.hasElapsed(.6)) {
+            localClawSub.runMotor(0);
         }
         else {
-            localClawSub.runMotor(0);
+            localClawSub.runMotor(-1);
         }
       }
       else {
-        if (localTimer.hasElapsed(2)) {
-            localClawSub.runMotor(1);
+        if (localTimer.hasElapsed(.6)) {
+            localClawSub.runMotor(0);
         }
         else {
-            localClawSub.runMotor(0);
+            localClawSub.runMotor(1);
         }
       }
     }
@@ -48,7 +48,7 @@ public class Claw extends CommandBase {
     }
     
     public boolean isFinished() {
-        if (localTimer.hasElapsed(3)) {
+        if (localTimer.hasElapsed(.7)) {
             return true;
         }
         else {

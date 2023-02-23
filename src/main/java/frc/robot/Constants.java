@@ -52,11 +52,15 @@ public final class Constants {
     public static final double LSArmMin = 1;
     public static final double LSArmMax = 99;
 
-    public static final double mamaPotMax = .7;
-    public static final double mamaPotMin = .4;
-    
-    public static final double babyPotMax = .8;
-    public static final double babyPotMin = .5;
+    public static final double mamaPotMax = .84; //.84
+    public static final double mamaPotMin = .69; //.69
+    public static final double mamaPotMid = ((mamaPotMax+mamaPotMin)/2);
+    public static final double mamaHalfRange = (((mamaPotMax-mamaPotMin)/2)-.01);
+
+    public static final double babyPotMax = .42; //.42
+    public static final double babyPotMin = .14; //.14
+    public static final double babyPotMid = ((babyPotMax+babyPotMin)/2);
+    public static final double babyHalfRange = (((babyPotMax-babyPotMin)/2)-.01);
 
   }
 
@@ -73,7 +77,9 @@ public final class Constants {
   //static SPI.Port hi = new SPI.Port(4));
   static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
   //static ADXRS450_Gyro clawGyro = new ADXRS450_Gyro(SPI.Port.kMXP);
-  static DigitalInput toplimitSwitch = new DigitalInput(2);
+  static DigitalInput papaLeftLimitSwitch = new DigitalInput(0);
+  static DigitalInput papaRightLimitSwitch = new DigitalInput(1);
+
   static AnalogPotentiometer MamaArmBasePot = new AnalogPotentiometer(0);
   static AnalogPotentiometer BabyArmBasePot = new AnalogPotentiometer(1);
   //static AnalogPotentiometer BabyArmBasePot = new AnalogPotentiometer(1);
@@ -90,7 +96,10 @@ public final class Constants {
     
     switch (limitID) {
       case 0:
-        limitState = toplimitSwitch.get();
+        limitState = papaLeftLimitSwitch.get();
+        break;
+      case 1:
+        limitState = papaRightLimitSwitch.get();
         break;
     }
     

@@ -136,7 +136,7 @@ public class RobotContainer {
       break;
       case 2:
         if (axisNumber == 2) {
-          axisOutput = deadZone(m_ArmTwoJoy.getRawAxis(axisNumber),.4);
+          axisOutput = -deadZone(m_ArmTwoJoy.getRawAxis(axisNumber),.3);
         }
         else {
           axisOutput = deadZone(m_ArmTwoJoy.getRawAxis(axisNumber),.1);

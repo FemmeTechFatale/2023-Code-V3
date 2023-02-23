@@ -19,13 +19,14 @@ public class Arm extends CommandBase {
     
   public void initialize() {
     limitStatus = false;
+    localArmSub.autoComplete = false;
   }
 
   //dear Mr. Mathisen, When you see this tmr, you'll probally wonder what I'm doing
   //I don't really know either but I tried really hard. Thanks - lezzles
   public void execute() {
-    if (RobotContainer.limitToggle) {
-      localArmSub.runMotorLimits();
+    if (!RobotContainer.limitToggle) {
+      localArmSub.runMotorLimitsv2();
     }
     else {
       localArmSub.runMotor();

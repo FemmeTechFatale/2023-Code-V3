@@ -20,7 +20,7 @@ public class ClawSub extends SubsystemBase {
     }
 
     //returns a status for display
-    public static boolean checkStatus() {
+    /*public static boolean checkStatus() {
         if (Claw.clawStatus){
             return true;
         }
@@ -28,7 +28,7 @@ public class ClawSub extends SubsystemBase {
             return false;
         }
     }
-
+    */
 
 
 
