@@ -4,13 +4,14 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.Arm;
 
 public class ArmSub extends SubsystemBase {
-    //Papa = Arm 1, Mama = 2, Baby = 3//
+    //Papa = Arm 0, Mama = 1, Baby = 2, Wrist = 3//
     public static boolean autoComplete = false;
     private final static Talon PapaArm = new Talon(Constants.PWMPort.PapaArmPort);
     private final static CANSparkMax MamaArm = new CANSparkMax(Constants.CANPort.MamaArmPort, MotorType.kBrushless);
@@ -25,23 +26,29 @@ public class ArmSub extends SubsystemBase {
                 autoComplete = true;
                 break;
             case 1:
-                if (Constants.SPDif(armBearNumber, targetValue) > .02) {
-                    MamaArm.set(incomingPower);
-                }
-                else if (Constants.SPDif(armBearNumber, targetValue) < .02) {
+                if (Constants.SPDif(armBearNumber-1, targetValue) > .005) {
                     MamaArm.set(-incomingPower);
+                    SmartDashboard.putString("DB/String 0", "WHOOOOA");
+
+                }
+                else if (Constants.SPDif(armBearNumber-1, targetValue) < -.005) {
+                    MamaArm.set(incomingPower);
+                    SmartDashboard.putString("DB/String 0", "AHHHHH");
+
                 }
                 else {
                     MamaArm.set(0);
                     autoComplete = true;
+                    SmartDashboard.putString("DB/String 0", "here we are!");
+
                 }
                 break;
             case 2:
-                if (Constants.SPDif(armBearNumber, targetValue) > .02) {
-                    BabyArm.set(incomingPower);
-                }
-                else if (Constants.SPDif(armBearNumber, targetValue) < .02) {
+                if (Constants.SPDif(armBearNumber-1, targetValue) > .005) {
                     BabyArm.set(-incomingPower);
+                }
+                else if (Constants.SPDif(armBearNumber-1, targetValue) < -.005) {
+                    BabyArm.set(incomingPower);
                 }
                 else {
                     BabyArm.set(0);
@@ -297,5 +304,9 @@ public class ArmSub extends SubsystemBase {
 
         //Wrist Limits (no current limits set)
         Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 0)*.5);
+    }
+
+    public static void motorStop() {
+        MamaArm.set(0);
     }
 }

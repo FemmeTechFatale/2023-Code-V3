@@ -17,16 +17,17 @@ public class Autony extends SequentialCommandGroup{ //imagine the beginning of m
         addCommands( 
             
             //forward for 5s, wait 5s, turn around, forward 5s
+            new AutoWait(1),
+            new AutoDriveTimed(m_driveSub,.5,.5,0),
+            new AutoWait(2)
 
-            new AutoDriveTimed(m_driveSub,1.5,1,0),
+            //new AutoDriveDistance(3, 1),
 
-            new AutoDriveDistance(3, 1),
-
-            new AutoWait(5),
+            //new AutoWait(5)
 
             //new AutoDriveTimed(5,0.5,10)
 
-            new AutoArm(m_ArmSub, .5, 100, 0)
+            //new AutoArm(m_ArmSub, .5, 100, 0)
 
             /*
             new ParallelCommandGroup(

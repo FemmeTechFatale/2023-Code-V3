@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.AutoArm;
 import frc.robot.commands.Claw;
 import frc.robot.subsystems.ArmSub;
 import frc.robot.subsystems.ClawSub;
@@ -103,7 +104,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("DB/String 1", Double.toString(Constants.GyroReading()));
     SmartDashboard.putString("DB/String 2", Double.toString(Constants.StringPot(0)));
     SmartDashboard.putString("DB/String 3", Double.toString(Constants.StringPot(1)));
-    SmartDashboard.putString("DB/String 4", Double.toString(Constants.SPDif(1,Constants.StringPotLimits.babyPotMax)));
+    SmartDashboard.putString("DB/String 4", Double.toString(Constants.SPDif(0,.74)));
 
     SmartDashboard.putBoolean("DB/LED 0", Claw.localToggle);
 
@@ -112,6 +113,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("DB/String 6", Boolean.toString(RobotContainer.limitToggle));
     SmartDashboard.putString("DB/String 7", Boolean.toString(Constants.LimitSwitch(0)));
     SmartDashboard.putString("DB/String 8", Boolean.toString(Constants.LimitSwitch(1)));
+    //SmartDashboard.putString("DB/String 9", Boolean.toString(AutoArm.localArmSub.autoComplete));
 
     //SmartDashboard.putString("DB/String 0", "Test 1");
   }

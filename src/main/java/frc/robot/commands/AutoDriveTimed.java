@@ -34,7 +34,7 @@ public class AutoDriveTimed extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
-		SmartDashboard.putString("DB/String 0", Double.toString(localTimeMain.get()));
+		//SmartDashboard.putString("DB/String 0", Double.toString(localTimeMain.get()));
         m_driveSub.autoDrive(outputMagnitude, curve);
         
     }

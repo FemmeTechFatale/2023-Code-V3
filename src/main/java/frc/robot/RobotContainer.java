@@ -9,6 +9,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Arm;
 import frc.robot.commands.AutoDriveDistance;
+import frc.robot.commands.AutoTwo;
 import frc.robot.commands.Autony;
 import frc.robot.commands.Autos;
 import frc.robot.commands.Claw;
@@ -110,6 +111,9 @@ public class RobotContainer {
     //New Claw Operator
     m_ArmOneJoy.button(1).onTrue(new Claw(m_ClawSub));
 
+    //Button to set arm position
+    m_ArmOneJoy.button(2).onTrue(new AutoTwo(m_robotTrain, m_ArmSub));
+    m_ArmOneJoy.button(3).onTrue(new Autony(m_robotTrain, m_ArmSub));
     //need a button to clear motor state?
     
   }

@@ -7,14 +7,14 @@ import frc.robot.subsystems.ArmSub;
 public class AutoArm extends CommandBase {
     
     double localMotorPower;
-    double localStringPotLimits;
+    double localStringPotTarget;
     int localThreeBears;
-    private final ArmSub localArmSub;
+    public final ArmSub localArmSub;
 
-    public AutoArm(ArmSub incomingSub, double incomingMotorPower, double StringPotLimits, int ThreeBears) {       
+    public AutoArm(ArmSub incomingSub, double incomingMotorPower, double StringPotTarget, int ThreeBears) {       
         localArmSub = incomingSub;
     	localMotorPower = incomingMotorPower;
-    	localStringPotLimits = StringPotLimits;
+    	localStringPotTarget = StringPotTarget;
         localThreeBears = ThreeBears;
     	addRequirements(localArmSub);
     }
@@ -27,14 +27,9 @@ public class AutoArm extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     public void execute() {
         //localArmSub.runAutoMotor(localThreeBears, localMotorPower);
-        localArmSub.runAutoMotorv2(localThreeBears, localMotorPower, localStringPotLimits);
+        localArmSub.runAutoMotorv2(localThreeBears, localMotorPower, localStringPotTarget);
     }
   
-    // Called once the command ends or is interrupted.
-    public void end(boolean interrupted) {
-
-    }
-   
     // Returns true when the command should end.
     public boolean isFinished() {
       if (localArmSub.autoComplete) {
@@ -44,5 +39,12 @@ public class AutoArm extends CommandBase {
         return false;
       }
     }
+
+    // Called once the command ends or is interrupted.
+    public void end(boolean interrupted) {
+        localArmSub.motorStop();
+    }
+   
+
   }
   
