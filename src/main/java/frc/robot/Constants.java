@@ -75,7 +75,7 @@ public final class Constants {
     public static Encoder driveEncoder = new Encoder(2, 3, true, EncodingType.k4X);
   }
   //static SPI.Port hi = new SPI.Port(4));
-  static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
+  //static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
   //static ADXRS450_Gyro clawGyro = new ADXRS450_Gyro(SPI.Port.kMXP);
   static DigitalInput papaLeftLimitSwitch = new DigitalInput(0);
   static DigitalInput papaRightLimitSwitch = new DigitalInput(1);
@@ -86,10 +86,10 @@ public final class Constants {
 
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);
 
-  public static double GyroReading(){
-    return driveGyro.getAngle(); 
+  //public static double GyroReading(){
+    //return driveGyro.getAngle(); 
     
-  }
+  //}
    
   public static boolean LimitSwitch(int limitID) {
     boolean limitState = false;

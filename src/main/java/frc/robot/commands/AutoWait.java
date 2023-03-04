@@ -27,7 +27,7 @@ public class AutoWait extends CommandBase {
 	}
 
 	public boolean isFinished() {
-		SmartDashboard.putString("DB/String 0", "here we are AutoWait");
+		//SmartDashboard.putString("DB/String 0", "here we are AutoWait");
 
 		return waitTimer.get() >= this.waittime;
 	}
@@ -37,7 +37,7 @@ public class AutoWait extends CommandBase {
 	public void end(boolean isFinished) {
         waitTimer.stop();
         waitTimer.reset();
-		SmartDashboard.putString("DB/String 0", "here we are how about here?");
+		//SmartDashboard.putString("DB/String 0", "here we are how about here?");
 
 	}
 

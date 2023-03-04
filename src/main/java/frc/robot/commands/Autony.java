@@ -18,7 +18,7 @@ public class Autony extends SequentialCommandGroup{ //imagine the beginning of m
             
             //forward for 5s, wait 5s, turn around, forward 5s
             new AutoWait(1),
-            new AutoDriveTimed(m_driveSub,.5,.5,0),
+            new AutoDriveTimed(m_driveSub,2,.5,0),
             new AutoWait(2)
 
             //new AutoDriveDistance(3, 1),

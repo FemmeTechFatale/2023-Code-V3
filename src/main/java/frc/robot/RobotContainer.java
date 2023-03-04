@@ -112,8 +112,8 @@ public class RobotContainer {
     m_ArmOneJoy.button(1).onTrue(new Claw(m_ClawSub));
 
     //Button to set arm position
-    m_ArmOneJoy.button(2).onTrue(new AutoTwo(m_robotTrain, m_ArmSub));
-    m_ArmOneJoy.button(3).onTrue(new Autony(m_robotTrain, m_ArmSub));
+    //m_ArmOneJoy.button(2).onTrue(new AutoTwo(m_robotTrain, m_ArmSub));
+    //m_ArmOneJoy.button(3).onTrue(new Autony(m_robotTrain, m_ArmSub));
     //need a button to clear motor state?
     
   }
@@ -140,7 +140,7 @@ public class RobotContainer {
       break;
       case 2:
         if (axisNumber == 2) {
-          axisOutput = -deadZone(m_ArmTwoJoy.getRawAxis(axisNumber),.3);
+          axisOutput = -deadZone(m_ArmTwoJoy.getRawAxis(axisNumber),.4);
         }
         else {
           axisOutput = deadZone(m_ArmTwoJoy.getRawAxis(axisNumber),.1);

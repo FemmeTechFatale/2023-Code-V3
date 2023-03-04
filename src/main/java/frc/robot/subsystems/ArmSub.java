@@ -28,18 +28,18 @@ public class ArmSub extends SubsystemBase {
             case 1:
                 if (Constants.SPDif(armBearNumber-1, targetValue) > .005) {
                     MamaArm.set(-incomingPower);
-                    SmartDashboard.putString("DB/String 0", "WHOOOOA");
+                    //SmartDashboard.putString("DB/String 0", "WHOOOOA");
 
                 }
                 else if (Constants.SPDif(armBearNumber-1, targetValue) < -.005) {
                     MamaArm.set(incomingPower);
-                    SmartDashboard.putString("DB/String 0", "AHHHHH");
+                    //SmartDashboard.putString("DB/String 0", "AHHHHH");
 
                 }
                 else {
                     MamaArm.set(0);
                     autoComplete = true;
-                    SmartDashboard.putString("DB/String 0", "here we are!");
+                    //SmartDashboard.putString("DB/String 0", "here we are!");
 
                 }
                 break;
