@@ -19,6 +19,10 @@ public class ClawSub extends SubsystemBase {
         ClawController.set(motorPower);
     }
 
+    public static void runAutoClaw(double motorPower, boolean closeItDammit) {
+        
+    }
+
     //returns a status for display
     /*public static boolean checkStatus() {
         if (Claw.clawStatus){

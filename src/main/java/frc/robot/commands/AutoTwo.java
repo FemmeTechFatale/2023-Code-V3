@@ -19,7 +19,12 @@ public class AutoTwo extends SequentialCommandGroup{ //imagine the beginning of 
             new AutoArm(m_ArmSub, 1, .28, 2),
             new AutoWait(.5),          
                 new AutoArm(m_ArmSub, .80, .82, 1),
+                new AutoWait(.5),
                 new AutoArm(m_ArmSub, 1, .35, 2),
+                new AutoWait(.5),
+                new AutoArm(m_ArmSub, 1, .2, 4),
+                //three bears subtracts 1
+                
 
             //new AutoArm(m_ArmSub, .80, .74, 1),
             new AutoWait(1),

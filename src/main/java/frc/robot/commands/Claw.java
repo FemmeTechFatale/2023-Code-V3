@@ -7,7 +7,7 @@ import frc.robot.subsystems.ClawSub;
 public class Claw extends CommandBase {
     
     private final ClawSub localClawSub;
-    public static boolean localToggle = false;
+    public static boolean localToggle = true;
     private Timer localTimer = new Timer();
 
     public Claw(ClawSub incomingSub) {

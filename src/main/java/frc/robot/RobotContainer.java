@@ -112,7 +112,7 @@ public class RobotContainer {
     m_ArmOneJoy.button(1).onTrue(new Claw(m_ClawSub));
 
     //Button to set arm position
-    //m_ArmOneJoy.button(2).onTrue(new AutoTwo(m_robotTrain, m_ArmSub));
+    m_ArmOneJoy.button(2).onTrue(new AutoTwo(m_robotTrain, m_ArmSub));
     //m_ArmOneJoy.button(3).onTrue(new Autony(m_robotTrain, m_ArmSub));
     //need a button to clear motor state?
     
@@ -126,7 +126,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     //return Autos.exampleAuto(m_exampleSubsystem);
-    return (new Autony(m_robotTrain, m_ArmSub));
+    return (new Autony(m_robotTrain, m_ArmSub, m_ClawSub));
   }
 
   public static double sendAxisValue(int controllerID, int axisNumber) {

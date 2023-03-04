@@ -62,6 +62,12 @@ public final class Constants {
     public static final double babyPotMid = ((babyPotMax+babyPotMin)/2);
     public static final double babyHalfRange = (((babyPotMax-babyPotMin)/2)-.01);
 
+    public static final double wristPotMin = .13;
+    public static final double wristPotMax = .28;
+    public static final double wristPotMid = ((wristPotMax+wristPotMin)/2);
+    public static final double wristHalfRange = (((wristPotMax-wristPotMin)/2)-.01);
+
+
   }
 
   public static final class ConversionFormulas {
@@ -82,6 +88,7 @@ public final class Constants {
 
   static AnalogPotentiometer MamaArmBasePot = new AnalogPotentiometer(0);
   static AnalogPotentiometer BabyArmBasePot = new AnalogPotentiometer(1);
+  static AnalogPotentiometer WristPot = new AnalogPotentiometer(2);
   //static AnalogPotentiometer BabyArmBasePot = new AnalogPotentiometer(1);
 
   //DigitalInput bottomlimitSwitch = new DigitalInput(1);
@@ -116,7 +123,11 @@ public final class Constants {
       case 1:
         potValue=BabyArmBasePot.get();
         break;
+      case 2:
+        potValue=WristPot.get();
+        break;
     }
+
     return potValue;
   }
 

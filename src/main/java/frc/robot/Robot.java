@@ -102,6 +102,7 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putString("DB/String 2", Double.toString(Constants.ArmBasePot.get()));
     //Shuffleboard.getTab("gyro test tab").add(Constants.gyro);
     //SmartDashboard.putString("DB/String 1", Double.toString(Constants.GyroReading()));
+    SmartDashboard.putString("DB/String 1", Double.toString(Constants.StringPot(2)));
     SmartDashboard.putString("DB/String 2", Double.toString(Constants.StringPot(0)));
     SmartDashboard.putString("DB/String 3", Double.toString(Constants.StringPot(1)));
     SmartDashboard.putString("DB/String 4", Double.toString(Constants.SPDif(0,.74)));
