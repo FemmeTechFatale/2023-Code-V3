@@ -8,6 +8,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Arm;
+import frc.robot.commands.AutoDriveBalance;
 import frc.robot.commands.AutoDriveDistance;
 import frc.robot.commands.AutoPlaceCone;
 import frc.robot.commands.AutoTwo;
@@ -124,6 +125,9 @@ public class RobotContainer {
 
     //Place Cone 3rd Level
     m_ArmOneJoy.button(5).onTrue(new AutoPlaceCone(m_ArmSub, m_robotTrain, 3));
+  
+    //Test button for AutoBalance
+    m_driverController.y().onTrue(new AutoDriveBalance(m_robotTrain, 15, .5, 0));
   }
 
   /**

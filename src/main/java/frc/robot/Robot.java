@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putString("DB/String 1", Double.toString(DriveTrain.RightFront.getEncoder().getPosition()));
     //SmartDashboard.putString("DB/String 2", Double.toString(Constants.ArmBasePot.get()));
     //Shuffleboard.getTab("gyro test tab").add(Constants.gyro);
-    //SmartDashboard.putString("DB/String 1", Double.toString(Constants.GyroReading()));
+    SmartDashboard.putString("DB/String 0", Double.toString(Constants.GyroReading()));
     SmartDashboard.putString("DB/String 1", Double.toString(Constants.StringPot(2)));
     SmartDashboard.putString("DB/String 2", Double.toString(Constants.StringPot(0)));
     SmartDashboard.putString("DB/String 3", Double.toString(Constants.StringPot(1)));
@@ -110,7 +110,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("DB/LED 0", Claw.localToggle);
 
     // arm limit toggle button + status display
-    //RobotContainer.limitToggle = SmartDashboard.getBoolean("DB/Button 0", false);
+    RobotContainer.limitToggle = SmartDashboard.getBoolean("DB/Button 0", false);
     SmartDashboard.putString("DB/String 6", Boolean.toString(RobotContainer.limitToggle));
     SmartDashboard.putString("DB/String 7", Boolean.toString(Constants.LimitSwitch(0)));
     SmartDashboard.putString("DB/String 8", Boolean.toString(Constants.LimitSwitch(1)));

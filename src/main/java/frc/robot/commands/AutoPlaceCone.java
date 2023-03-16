@@ -49,7 +49,7 @@ public class AutoPlaceCone extends SequentialCommandGroup{ //imagine the beginni
                 new AutoWait(.5),
                 new AutoArm(m_ArmSub, 1, .24, 2),
                 new AutoArm(m_ArmSub, .80, .793, 1),
-                new AutoArm(m_ArmSub, 1, .385, 2),
+                new AutoArm(m_ArmSub, 1, .392, 2),
                 new AutoArm(m_ArmSub, 1, .205, 3),
                 new AutoDriveTimed(m_driveSub,1.1,.35,0),
                 new AutoWait(.2)

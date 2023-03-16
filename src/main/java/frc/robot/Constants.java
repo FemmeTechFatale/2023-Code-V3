@@ -82,7 +82,7 @@ public final class Constants {
   }
   //static SPI.Port hi = new SPI.Port(4));
   //static AnalogGyro driveGyro = new AnalogGyro(0);
-  static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
+  public static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
   static DigitalInput papaLeftLimitSwitch = new DigitalInput(0);
   static DigitalInput papaRightLimitSwitch = new DigitalInput(1);
 
@@ -91,7 +91,7 @@ public final class Constants {
   static AnalogPotentiometer WristPot = new AnalogPotentiometer(2);
 
   public static double GyroReading(){
-    return driveGyro.getAngle(); 
+    return (driveGyro.getAngle()); 
   }
    
   public static boolean LimitSwitch(int limitID) {
