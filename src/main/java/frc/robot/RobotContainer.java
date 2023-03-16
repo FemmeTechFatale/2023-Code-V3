@@ -9,12 +9,14 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Arm;
 import frc.robot.commands.AutoDriveDistance;
+import frc.robot.commands.AutoPlaceCone;
 import frc.robot.commands.AutoTwo;
 import frc.robot.commands.Autony;
 import frc.robot.commands.Autos;
 import frc.robot.commands.Claw;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GyroMotor;
+import frc.robot.commands.PresetThree;
 import frc.robot.subsystems.ArmSub;
 import frc.robot.subsystems.ClawSub;
 import frc.robot.commands.Drive;
@@ -112,10 +114,16 @@ public class RobotContainer {
     m_ArmOneJoy.button(1).onTrue(new Claw(m_ClawSub));
 
     //Button to set arm position
-    m_ArmOneJoy.button(2).onTrue(new AutoTwo(m_robotTrain, m_ArmSub));
-    //m_ArmOneJoy.button(3).onTrue(new Autony(m_robotTrain, m_ArmSub));
-    //need a button to clear motor state?
-    
+    m_ArmOneJoy.button(2).onTrue(new AutoTwo(m_ArmSub, m_robotTrain));
+
+    //button to reset to starting position (home)
+    m_ArmOneJoy.button(3).onTrue(new PresetThree(m_ArmSub));
+
+    //Place Cone 2nd Level
+    m_ArmOneJoy.button(4).onTrue(new AutoPlaceCone(m_ArmSub, m_robotTrain,2));
+
+    //Place Cone 3rd Level
+    m_ArmOneJoy.button(5).onTrue(new AutoPlaceCone(m_ArmSub, m_robotTrain, 3));
   }
 
   /**
@@ -133,7 +141,7 @@ public class RobotContainer {
     double axisOutput = 0;
     switch(controllerID) {
       case 0:
-        axisOutput = deadZone(m_driverController.getRawAxis(axisNumber), .1);
+        axisOutput = deadZone(m_driverController.getRawAxis(axisNumber), .001);
       break;
       case 1:
         axisOutput = deadZone(m_ArmOneJoy.getRawAxis(axisNumber), .1);

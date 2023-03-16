@@ -50,8 +50,8 @@ public class DriveSub extends SubsystemBase {
     }
 
     public void DifferentialDrive() {
-      m_drive.arcadeDrive(-RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,1),
-      -RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,0));     
+      m_drive.arcadeDrive(-RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,1)*.6,
+      -RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,0)*.6);     
       
       //if (Constants.StringPot(Constants.OperatorConstants.kDriverControllerPort) < 100) {
         //Left.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kDriverControllerPort,1));
@@ -71,6 +71,10 @@ public class DriveSub extends SubsystemBase {
     
       public static void autoDrive(double outputMagnitude, double curve) {
         m_drive.arcadeDrive(outputMagnitude, curve);    	
+      }
+
+      public static void balance() {
+        //motor.set()
       }
 
 }

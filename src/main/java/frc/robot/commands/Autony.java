@@ -18,38 +18,19 @@ public class Autony extends SequentialCommandGroup{ //imagine the beginning of m
         m_ClawSub = subsystemThree;
         addRequirements(m_driveSub, m_ArmSub);
         addCommands( 
-            
             //forward for 5s, wait 5s, turn around, forward 5s
-            new AutoWait(1),
+            //new AutoWait(1),
             new Claw(m_ClawSub),
-            new AutoDriveTimed(m_driveSub,2,.5,0),
-            //new AutoWait(2),
+            new AutoPlaceCone(m_ArmSub, m_driveSub, 2),
+            new Claw(m_ClawSub),
             //new AutoDriveTimed(m_driveSub, .5, 0, .5),
-            new AutoWait(1.5)
-            //new AutoDriveTimed(m_driveSub, .5, 0, -.5)
-
-            //new AutoDriveDistance(3, 1),
-
-            //new AutoWait(5)
-
-            //new AutoDriveTimed(5,0.5,10)
-
-            //new AutoArm(m_ArmSub, .5, 100, 0)
-
-            /*
+            new AutoWait(.2),
             new ParallelCommandGroup(
-            //are we going to need a parallel command group??
-            ),
-           
-            new AutoArm(0),
-            //for now...
-            //are we doing the arm in Autony
-            
+                new AutoDriveTimed(m_driveSub, 2.5, -.6, 0),
+                new PresetThree(m_ArmSub)
+            )
 
-            new AutoDriveTimed(1, 2, 3)
-            //value for now 
 
-            */
 
         );
     }

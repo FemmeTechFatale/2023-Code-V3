@@ -58,16 +58,21 @@ public class ArmSub extends SubsystemBase {
             case 3:
                 //What feedback do we have for the wrist?
                 if (Constants.SPDif(armBearNumber-1, targetValue) > .005) {
-                    Wrist.set(-incomingPower);
+                    Wrist.set(incomingPower);
                 }
                 else if (Constants.SPDif(armBearNumber-1, targetValue) < -.005) {
-                    Wrist.set(incomingPower);
+                    Wrist.set(-incomingPower);
                 }
                 else {
                     Wrist.set(0);
                     autoComplete = true;
                 }
                 break;
+            case 4:
+                MamaArm.set(0);
+                BabyArm.set(0);
+                Wrist.set(0);
+                autoComplete = true;
         }
         return autoComplete;
     }
@@ -312,11 +317,11 @@ public class ArmSub extends SubsystemBase {
 
         //Wrist Limits 
         if (Math.abs(Constants.SPDif(2, Constants.StringPotLimits.wristPotMid)) < Constants.StringPotLimits.wristHalfRange) {
-                Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0)*1);
+                Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0)*.5);
             }
             else if (Constants.SPDif(2, Constants.StringPotLimits.wristPotMid) > Constants.StringPotLimits.wristHalfRange) {
                 if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0) > 0 ) {
-                    Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0)*1);
+                    Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0)*.5);
                 }
                 else {
                     Wrist.set(0);
@@ -325,7 +330,7 @@ public class ArmSub extends SubsystemBase {
             else if (Constants.SPDif(2, Constants.StringPotLimits.wristPotMid) < -Constants.StringPotLimits.wristHalfRange) {
             //else {
                 if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0) < 0 ) {
-                    Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0)*1);
+                    Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0)*.5);
                 }
                 else {
                     Wrist.set(0);
@@ -338,16 +343,6 @@ public class ArmSub extends SubsystemBase {
         //Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 0)*.5);
     }
 
-
-    public static void runDefaults() {
-        if (Constants.StringPot(1) > (Constants.StringPotLimits.babyPotMin + .02)) {
-            BabyArm.set(-.1);
-        }
-        if (Constants.StringPot(0) > (Constants.StringPotLimits.mamaPotMin + .02)) {
-            MamaArm.set(-.1);
-        }
-
-    }
     
 
     public static void motorStop() {

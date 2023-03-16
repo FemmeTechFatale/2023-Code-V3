@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.SPI.Port;
+//import edu.wpi.first.wpilibj.SPI.Port;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -62,8 +62,8 @@ public final class Constants {
     public static final double babyPotMid = ((babyPotMax+babyPotMin)/2);
     public static final double babyHalfRange = (((babyPotMax-babyPotMin)/2)-.01);
 
-    public static final double wristPotMin = .13;
-    public static final double wristPotMax = .28;
+    public static final double wristPotMin = .135;
+    public static final double wristPotMax = .265;
     public static final double wristPotMid = ((wristPotMax+wristPotMin)/2);
     public static final double wristHalfRange = (((wristPotMax-wristPotMin)/2)-.01);
 
@@ -81,22 +81,18 @@ public final class Constants {
     public static Encoder driveEncoder = new Encoder(2, 3, true, EncodingType.k4X);
   }
   //static SPI.Port hi = new SPI.Port(4));
-  //static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
-  //static ADXRS450_Gyro clawGyro = new ADXRS450_Gyro(SPI.Port.kMXP);
+  //static AnalogGyro driveGyro = new AnalogGyro(0);
+  static ADXRS450_Gyro driveGyro = new ADXRS450_Gyro();
   static DigitalInput papaLeftLimitSwitch = new DigitalInput(0);
   static DigitalInput papaRightLimitSwitch = new DigitalInput(1);
 
   static AnalogPotentiometer MamaArmBasePot = new AnalogPotentiometer(0);
   static AnalogPotentiometer BabyArmBasePot = new AnalogPotentiometer(1);
   static AnalogPotentiometer WristPot = new AnalogPotentiometer(2);
-  //static AnalogPotentiometer BabyArmBasePot = new AnalogPotentiometer(1);
 
-  //DigitalInput bottomlimitSwitch = new DigitalInput(1);
-
-  //public static double GyroReading(){
-    //return driveGyro.getAngle(); 
-    
-  //}
+  public static double GyroReading(){
+    return driveGyro.getAngle(); 
+  }
    
   public static boolean LimitSwitch(int limitID) {
     boolean limitState = false;
