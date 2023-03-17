@@ -10,6 +10,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Arm;
 import frc.robot.commands.AutoDriveBalance;
 import frc.robot.commands.AutoDriveDistance;
+import frc.robot.commands.AutoJustDrive;
 import frc.robot.commands.AutoPlaceCone;
 import frc.robot.commands.AutoTwo;
 import frc.robot.commands.Autony;
@@ -28,6 +29,7 @@ import frc.robot.subsystems.ServoSub;
 import frc.robot.subsystems.DriveSub;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -138,7 +140,15 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     //return Autos.exampleAuto(m_exampleSubsystem);
-    return (new Autony(m_robotTrain, m_ArmSub, m_ClawSub));
+
+    if (SmartDashboard.getBoolean("DB/Button 2", false)) {
+      return (new Autony(m_robotTrain, m_ArmSub, m_ClawSub));
+    }
+    else if (SmartDashboard.getBoolean("DB/Button 3", false)) {
+      return (new AutoJustDrive(m_robotTrain, m_ArmSub, m_ClawSub));
+    }
+
+    else {return (new Autony(m_robotTrain, m_ArmSub, m_ClawSub));}
   }
 
   public static double sendAxisValue(int controllerID, int axisNumber) {
