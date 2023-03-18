@@ -4,35 +4,40 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ArmSub;
+import frc.robot.subsystems.ClawSub;
 
 
 public class PresetFour extends SequentialCommandGroup{ //imagine the beginning of match
     
     DriveSub m_driveSub;
     ArmSub m_ArmSub;
-    public PresetFour(DriveSub subsystemOne, ArmSub subsystemTwo) {
+    ClawSub m_ClawSub;
+    public PresetFour(DriveSub subsystemOne, ArmSub subsystemTwo, ClawSub subsystemThree) {
         m_driveSub = subsystemOne;
         m_ArmSub = subsystemTwo;
+        m_ClawSub = subsystemThree;
         addRequirements(m_driveSub, m_ArmSub);
         addCommands( 
-            // Three Bears
-            // 1 = MamaArm      Range = .69-.84 (extended-tucked)
-            // 2 = BabyArm      Range = .14-.42 (extended-tucked)
-            // 3 = Wrist        Range = .135-.265 (up-down)
+            //forward for 5s, wait 5s, turn around, forward 5s
+            //new AutoWait(1),
+            new Claw(m_ClawSub),
+                new AutoPlaceCone(m_ArmSub, m_driveSub, 2),
+                new Claw(m_ClawSub),
+            
+            new AutoDriveTimed(m_driveSub, .3, -.3, 0),
+            //new AutoWait(.2),
+            //home
+            new ParallelCommandGroup(
+                new PresetThree(m_ArmSub),
+                new AutoDriveBalance(m_driveSub, 10, -.6, 0)
+            )
 
-            //sets arm to pick up position
-            new AutoWait(.5),
-            new AutoArm(m_ArmSub, 1, .22, 2),
-            new AutoWait(.5),          
-            new AutoArm(m_ArmSub, .80, .75, 1),
-            new AutoWait(.5),
-            new AutoArm(m_ArmSub, 1, .265, 3),
-                //three bears subtracts 1
-                
 
-            //new AutoArm(m_ArmSub, .80, .74, 1),
-            new AutoWait(1)
-            //new AutoArm(m_ArmSub, 1, .30, 2),
+
         );
     }
+
+    
+
 }
+

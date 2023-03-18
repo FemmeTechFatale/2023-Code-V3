@@ -24,7 +24,7 @@ public class PresetFive extends SequentialCommandGroup{ //imagine the beginning 
             new AutoWait(.5),
             new AutoArm(m_ArmSub, 1, .24, 2),
             new AutoWait(.5),          
-            new AutoArm(m_ArmSub, .80, .82, 1),
+            new AutoArm(m_ArmSub, .80, .165, 1), //.82
             new AutoWait(.5),
             new AutoArm(m_ArmSub, 1, .32, 2),
             new AutoWait(.5),

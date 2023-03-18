@@ -21,7 +21,7 @@ public class PresetThree extends SequentialCommandGroup{ //imagine the beginning
 
             //returns arm to starting config
             new AutoWait(.5),
-            new AutoArm(m_ArmSub, 1, .69, 1),
+            new AutoArm(m_ArmSub, 1, .08, 1), //.69
             //new AutoWait(.5),          
             new AutoArm(m_ArmSub, .80, .32, 2),
             //new AutoWait(.5),

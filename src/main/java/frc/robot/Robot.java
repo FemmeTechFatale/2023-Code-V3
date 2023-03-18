@@ -35,7 +35,27 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+
     m_robotContainer = new RobotContainer();
+
+
+    
+    SmartDashboard.putString("DB/String 0", Double.toString(Constants.GyroReading()));
+    SmartDashboard.putString("DB/String 5", Double.toString(Constants.GyroDeltaReading()));
+
+    SmartDashboard.putString("DB/String 1", Double.toString(Constants.StringPot(2)));
+    SmartDashboard.putString("DB/String 2", Double.toString(Constants.StringPot(0)));
+    SmartDashboard.putString("DB/String 3", Double.toString(Constants.StringPot(1)));
+    SmartDashboard.putString("DB/String 4", Double.toString(Constants.SPDif(0,.74)));
+
+    SmartDashboard.putBoolean("DB/LED 0", Claw.localToggle);
+
+    // arm limit toggle button + status display
+    SmartDashboard.putString("DB/String 6", Boolean.toString(RobotContainer.limitToggle));
+    SmartDashboard.putString("DB/String 7", Boolean.toString(Constants.LimitSwitch(0)));
+    SmartDashboard.putString("DB/String 8", Boolean.toString(Constants.LimitSwitch(1)));
+    
+
   }
 
   /**
@@ -84,9 +104,11 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
     //SmartDashboard.putString("DB/String 1", "Test 1");
     //SmartDashboard.putString("DB/String 2", Double.toString(RobotContainer.m_ArmTwoJoy.getRawAxis(1)));
 
@@ -101,7 +123,13 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putString("DB/String 1", Double.toString(DriveTrain.RightFront.getEncoder().getPosition()));
     //SmartDashboard.putString("DB/String 2", Double.toString(Constants.ArmBasePot.get()));
     //Shuffleboard.getTab("gyro test tab").add(Constants.gyro);
+    
+    //SmartDashboard.putString("DB/String 0", Double.toString(ArmSub.mamaNeoRead()));
+    //SmartDashboard.putString("DB/String 5", Double.toString(ArmSub.babyNeoRead()));
+     
     SmartDashboard.putString("DB/String 0", Double.toString(Constants.GyroReading()));
+    SmartDashboard.putString("DB/String 5", Double.toString(Constants.GyroDeltaReading()));
+
     SmartDashboard.putString("DB/String 1", Double.toString(Constants.StringPot(2)));
     SmartDashboard.putString("DB/String 2", Double.toString(Constants.StringPot(0)));
     SmartDashboard.putString("DB/String 3", Double.toString(Constants.StringPot(1)));
@@ -110,11 +138,15 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("DB/LED 0", Claw.localToggle);
 
     // arm limit toggle button + status display
-    RobotContainer.limitToggle = SmartDashboard.getBoolean("DB/Button 0", false);
     SmartDashboard.putString("DB/String 6", Boolean.toString(RobotContainer.limitToggle));
     SmartDashboard.putString("DB/String 7", Boolean.toString(Constants.LimitSwitch(0)));
     SmartDashboard.putString("DB/String 8", Boolean.toString(Constants.LimitSwitch(1)));
+    
+    
     //SmartDashboard.putString("DB/String 9", Boolean.toString(AutoArm.localArmSub.autoComplete));
+
+    RobotContainer.limitToggle = SmartDashboard.getBoolean("DB/Button 0", false);
+
 
     //SmartDashboard.putString("DB/String 0", "Test 1");
   }

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 //import edu.wpi.first.wpilibj.SPI.Port;
+import frc.robot.subsystems.ArmSub;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -52,8 +53,18 @@ public final class Constants {
     public static final double LSArmMin = 1;
     public static final double LSArmMax = 99;
 
-    public static final double mamaPotMax = .84; //.84
-    public static final double mamaPotMin = .69; //.69
+    public static final double maMin = 0;
+    public static final double maMax = 282;
+    public static final double maMid = ((maMax+maMin)/2);
+    public static final double maHalfRange = (((maMax-maMin)/2)-.01);
+
+    public static final double baMin = 0;
+    public static final double baMax = 465;
+    public static final double baMid = ((baMax+baMin)/2);
+    public static final double baHalfRange = (((baMax-baMin)/2)-.01);
+
+    public static final double mamaPotMax = .182; //.84 old new .215
+    public static final double mamaPotMin = .08; //.69 old new .05
     public static final double mamaPotMid = ((mamaPotMax+mamaPotMin)/2);
     public static final double mamaHalfRange = (((mamaPotMax-mamaPotMin)/2)-.01);
 
@@ -62,7 +73,7 @@ public final class Constants {
     public static final double babyPotMid = ((babyPotMax+babyPotMin)/2);
     public static final double babyHalfRange = (((babyPotMax-babyPotMin)/2)-.01);
 
-    public static final double wristPotMin = .135;
+    public static final double wristPotMin = .130;
     public static final double wristPotMax = .265;
     public static final double wristPotMid = ((wristPotMax+wristPotMin)/2);
     public static final double wristHalfRange = (((wristPotMax-wristPotMin)/2)-.01);
@@ -93,6 +104,10 @@ public final class Constants {
   public static double GyroReading(){
     return (driveGyro.getAngle()); 
   }
+
+  public static double GyroDeltaReading() {
+    return (driveGyro.getRate());
+  }
    
   public static boolean LimitSwitch(int limitID) {
     boolean limitState = false;
@@ -114,7 +129,7 @@ public final class Constants {
 
     switch (PotID) {
       case 0:
-        potValue=MamaArmBasePot.get();
+        potValue=1-MamaArmBasePot.get();
         break;
       case 1:
         potValue=BabyArmBasePot.get();
@@ -129,6 +144,29 @@ public final class Constants {
 
   public static double SPDif(int PotID, double targetValue) {
     return (targetValue - StringPot(PotID));
+  }
+
+  //ID 0 - Mama Arm
+  //ID 1 - Baby Arm
+  public static double neoRead(int neoID) {
+    double neoValue = 0;
+
+    switch (neoID) {
+      case 0:
+        neoValue=ArmSub.mamaNeoRead();
+        break;
+      case 1:
+        neoValue=ArmSub.babyNeoRead();
+        break;
+    }
+
+    return neoValue;
+  }
+
+  //ID 0 - Mama Arm
+  //ID 1 - Baby Arm
+  public static double neoDif(int neoID, double targetValue) {
+    return (targetValue - neoRead(neoID));
   }
 
 }

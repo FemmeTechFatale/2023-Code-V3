@@ -17,14 +17,13 @@ import frc.robot.commands.Autony;
 import frc.robot.commands.Autos;
 import frc.robot.commands.Claw;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.GyroMotor;
+import frc.robot.commands.PresetFour;
 import frc.robot.commands.PresetThree;
 import frc.robot.subsystems.ArmSub;
 import frc.robot.subsystems.ClawSub;
 import frc.robot.commands.Drive;
 import frc.robot.commands.Servo;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.GyroMotorSub;
 import frc.robot.subsystems.ServoSub;
 import frc.robot.subsystems.DriveSub;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -47,7 +46,6 @@ public class RobotContainer {
   private final ArmSub m_ArmSub = new ArmSub();
   private final DriveSub m_robotTrain = new DriveSub();
   private final ServoSub m_ServoSub = new ServoSub();
-  private final GyroMotorSub m_GyroMotorSub = new GyroMotorSub();
   private final ClawSub m_ClawSub = new ClawSub();
   public static boolean limitToggle;
 
@@ -75,7 +73,6 @@ public class RobotContainer {
     configureBindings();
 
     m_ArmSub.setDefaultCommand(new Arm(m_ArmSub));
-    m_GyroMotorSub.setDefaultCommand(new GyroMotor(m_GyroMotorSub));
     m_robotTrain.setDefaultCommand(new Drive(m_robotTrain));
     
     
@@ -129,7 +126,7 @@ public class RobotContainer {
     m_ArmOneJoy.button(5).onTrue(new AutoPlaceCone(m_ArmSub, m_robotTrain, 3));
   
     //Test button for AutoBalance
-    m_driverController.y().onTrue(new AutoDriveBalance(m_robotTrain, 15, .5, 0));
+    //m_driverController.y().onTrue(new AutoDriveBalance(m_robotTrain, 15, -.6, 0));
   }
 
   /**
@@ -141,14 +138,26 @@ public class RobotContainer {
     // An example command will be run in autonomous
     //return Autos.exampleAuto(m_exampleSubsystem);
 
+    //ONLY button 2 on dash is pressed: Place mid, exit community
     if (SmartDashboard.getBoolean("DB/Button 2", false)) {
       return (new Autony(m_robotTrain, m_ArmSub, m_ClawSub));
     }
+
+    //ONLY button 3 on dash is pressed: Place mid, autoBalance
     else if (SmartDashboard.getBoolean("DB/Button 3", false)) {
-      return (new AutoJustDrive(m_robotTrain, m_ArmSub, m_ClawSub));
+      return (new PresetFour(m_robotTrain, m_ArmSub, m_ClawSub));
     }
 
-    else {return (new Autony(m_robotTrain, m_ArmSub, m_ClawSub));}
+    //ONLY button 1 on dash is pressed: Only autoBalance
+    else if (SmartDashboard.getBoolean("DB/Button 1", false)) {
+      return (new AutoDriveBalance(m_robotTrain, 15, .6, 0));
+    }
+
+    //default option
+    else {
+      return (new AutoJustDrive(m_robotTrain, m_ArmSub, m_ClawSub));
+      //return (new Autony(m_robotTrain, m_ArmSub, m_ClawSub));
+    }
   }
 
   public static double sendAxisValue(int controllerID, int axisNumber) {

@@ -7,7 +7,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.DriveSub;
 
 
-public class AutoDriveBalance extends CommandBase {
+public class AutoDriveBalanceV2 extends CommandBase {
 	double outputMagnitude;
 	double curve;
 	double time;
@@ -16,7 +16,7 @@ public class AutoDriveBalance extends CommandBase {
 	Timer localTimeMain = new Timer();
 
 	
-    public AutoDriveBalance(DriveSub driveSub, double time, double outputMagnitude, double curve) {
+    public AutoDriveBalanceV2(DriveSub driveSub, double time, double outputMagnitude, double curve) {
      
     	this.outputMagnitude = outputMagnitude;
     	this.curve = curve;
@@ -47,7 +47,9 @@ public class AutoDriveBalance extends CommandBase {
             m_driveSub.autoDrive(outputMagnitude, curve);
         }
         else {
-            m_driveSub.autoDrive(-.024*Constants.GyroReading(), curve); //.4 maxes to 60% motor
+            //if (Constants.GyroDeltaReading()>)
+            m_driveSub.autoDrive(-.028*Constants.GyroReading(), curve); //.4 maxes to 60% motor
+        
         }
          
     }

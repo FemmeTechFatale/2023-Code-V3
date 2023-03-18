@@ -26,7 +26,7 @@ public class AutoJustDrive extends SequentialCommandGroup{ //imagine the beginni
             //new AutoDriveTimed(m_driveSub, .5, 0, .5),
             //new AutoWait(.2),
             //new ParallelCommandGroup(
-                new AutoDriveTimed(m_driveSub, 2.5, -.6, 0)
+                new AutoDriveTimed(m_driveSub, 2.5, .6, 0)
             //    new PresetThree(m_ArmSub)
             //)
 

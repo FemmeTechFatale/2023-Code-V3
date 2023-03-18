@@ -31,13 +31,13 @@ public class AutoPlaceCone extends SequentialCommandGroup{ //imagine the beginni
             case 2:
                 addCommands( 
                 //drives backwards, raises arm, places cone 
-                new AutoDriveTimed(m_driveSub,1.5,-.3,0),
-                new AutoWait(.5),
+                new AutoDriveTimed(m_driveSub,1,-.3,0),
+                //new AutoWait(.5),
                 new AutoArm(m_ArmSub, 1, .293, 2),
                 //new AutoArm(m_ArmSub, .80, .78, 1),
                 //new AutoArm(m_ArmSub, 1, .36, 2),
                 new AutoArm(m_ArmSub, 1, .18, 3),
-                new AutoDriveTimed(m_driveSub,1.2,.3,0),
+                new AutoDriveTimed(m_driveSub,.7,.3,0),
                 new AutoWait(.2)
                 );
                 break;
@@ -48,7 +48,7 @@ public class AutoPlaceCone extends SequentialCommandGroup{ //imagine the beginni
                 new AutoDriveTimed(m_driveSub,1.5,-.3,0),
                 new AutoWait(.5),
                 new AutoArm(m_ArmSub, 1, .24, 2),
-                new AutoArm(m_ArmSub, .80, .793, 1),
+                new AutoArm(m_ArmSub, .80, .153, 1), //.793
                 new AutoArm(m_ArmSub, 1, .392, 2),
                 new AutoArm(m_ArmSub, 1, .205, 3),
                 new AutoDriveTimed(m_driveSub,1.1,.35,0),

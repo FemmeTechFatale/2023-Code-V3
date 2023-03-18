@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -343,9 +344,128 @@ public class ArmSub extends SubsystemBase {
         //Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort, 0)*.5);
     }
 
-    
 
     public static void motorStop() {
         MamaArm.set(0);
+    }
+
+    public static void runMotorLimitsV3() { //uses internal encoders
+        
+        
+        if (Constants.neoRead(1) > (Constants.StringPotLimits.baMin + .02)) {
+            if (Constants.LimitSwitch(0)) {
+                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2) > 0) {
+                    PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
+                }
+                else {
+                    PapaArm.set(0);
+                }
+            }
+            else if (Constants.LimitSwitch(1)) {
+                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2) < 0) {
+                    PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
+                }
+                else {
+                    PapaArm.set(0);
+                }
+            }
+            else {
+                PapaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,2));
+            }
+            }
+    
+            //Mama Arm Limits
+            if (Constants.neoRead(1) > (Constants.StringPotLimits.baMin + .02)) {
+            if (Math.abs(Constants.neoDif(0, Constants.StringPotLimits.maMid)) < Constants.StringPotLimits.maHalfRange) {
+                //if (Math.abs(Constants.neoDif(1, Constants.StringPotLimits.babyPotMin)) > .02) {
+                MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
+            }
+            else if (Constants.neoDif(0, Constants.StringPotLimits.maMid) > Constants.StringPotLimits.maHalfRange) {
+            //else if (Constants.neoDif(1,Constants.StringPotLimits.babyPotMin) > 0) {
+                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1) < 0 ) {
+                    MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
+                }
+                else {
+                    MamaArm.set(0);
+                }
+            }
+            else if (Constants.neoDif(0, Constants.StringPotLimits.maMid) < -Constants.StringPotLimits.maHalfRange) {
+            //else {
+                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1) > 0 ) {
+                    MamaArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyTwoPort,1));
+                }
+                else {
+                    MamaArm.set(0);
+                }
+            }
+            else {
+                MamaArm.set(0); 
+            }
+            }
+            else {
+                MamaArm.set(0); 
+            }
+    
+            //Baby Arm Limits
+            if (Constants.neoRead(0) < (Constants.StringPotLimits.maMax - .04)) {
+            if (Math.abs(Constants.neoDif(1, Constants.StringPotLimits.baMid)) < Constants.StringPotLimits.baHalfRange) {
+            //if (Math.abs(Constants.neoDif(1, Constants.StringPotLimits.babyPotMin)) > .02) {
+                BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
+            }
+            else if (Constants.neoDif(1, Constants.StringPotLimits.baMid) > Constants.StringPotLimits.baHalfRange) {
+            //else if (Constants.neoDif(1,Constants.StringPotLimits.babyPotMin) > 0) {
+                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1) < 0 ) {
+                    BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
+                }
+                else {
+                    BabyArm.set(0);
+                }
+            }
+            else if (Constants.neoDif(1, Constants.StringPotLimits.baMid) < -Constants.StringPotLimits.babyHalfRange) {
+            //else {
+                if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1) > 0 ) {
+                    BabyArm.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,1));
+                }
+                else {
+                    BabyArm.set(0);
+                }
+            }
+            else {
+                BabyArm.set(0); 
+            }
+            }
+    
+            //Wrist Limits 
+            if (Math.abs(Constants.SPDif(2, Constants.StringPotLimits.wristPotMid)) < Constants.StringPotLimits.wristHalfRange) {
+                    Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0)*.5);
+                }
+                else if (Constants.SPDif(2, Constants.StringPotLimits.wristPotMid) > Constants.StringPotLimits.wristHalfRange) {
+                    if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0) > 0 ) {
+                        Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0)*.5);
+                    }
+                    else {
+                        Wrist.set(0);
+                    }
+                }
+                else if (Constants.SPDif(2, Constants.StringPotLimits.wristPotMid) < -Constants.StringPotLimits.wristHalfRange) {
+                //else {
+                    if (RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0) < 0 ) {
+                        Wrist.set(RobotContainer.sendAxisValue(Constants.OperatorConstants.kArmJoyOnePort,0)*.5);
+                    }
+                    else {
+                        Wrist.set(0);
+                    }
+                }
+                else {
+                    Wrist.set(0); 
+                }
+            
+    }
+
+    public static double mamaNeoRead() {
+        return MamaArm.getEncoder().getPosition()*-1;
+    }
+    public static double babyNeoRead() {
+        return BabyArm.getEncoder().getPosition()*-1;
     }
 }

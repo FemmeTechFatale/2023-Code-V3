@@ -26,7 +26,7 @@ public class AutoTwo extends SequentialCommandGroup{ //imagine the beginning of 
             new AutoWait(.5),
             new AutoArm(m_ArmSub, 1, .24, 2),
             //new AutoWait(.5),          
-                new AutoArm(m_ArmSub, .80, .78, 1),
+                new AutoArm(m_ArmSub, .80, .14, 1), //.78
                 //new AutoWait(.5),
                 new AutoArm(m_ArmSub, 1, .348, 2),
                 //new AutoWait(.5),

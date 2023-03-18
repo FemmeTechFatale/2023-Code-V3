@@ -27,6 +27,7 @@ public class Autony extends SequentialCommandGroup{ //imagine the beginning of m
             new AutoWait(.2),
             new ParallelCommandGroup(
                 new AutoDriveTimed(m_driveSub, 2.5, -.6, 0),
+                //home
                 new PresetThree(m_ArmSub)
             )
 
