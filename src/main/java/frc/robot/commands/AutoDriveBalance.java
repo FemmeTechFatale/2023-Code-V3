@@ -39,7 +39,7 @@ public class AutoDriveBalance extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
         
-        if (Math.abs(Constants.GyroReading())>12) {
+        if (Math.abs(Constants.GyroReading())>14) {
             balanceCheck = false;
         }
         

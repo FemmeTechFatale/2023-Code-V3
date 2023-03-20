@@ -29,7 +29,7 @@ public class PresetFour extends SequentialCommandGroup{ //imagine the beginning 
             //home
             new ParallelCommandGroup(
                 new PresetThree(m_ArmSub),
-                new AutoDriveBalance(m_driveSub, 10, -.6, 0)
+                new AutoDriveBalance(m_driveSub, 10, -.65, 0)
             )
 
 
